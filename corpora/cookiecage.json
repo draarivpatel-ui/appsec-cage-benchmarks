@@ -1,0 +1,133 @@
+{
+  "suite": "cookiecage",
+  "package": "cookiecage",
+  "title": "Cookie smuggling, tossing and strict Cookie-header parsing",
+  "attackSurface": "A browser-supplied Cookie request header parsed by a server-side application",
+  "primaryCwe": "CWE-565",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Session Management Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-565",
+      "url": "https://cwe.mitre.org/data/definitions/565.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2023-26049",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-26049",
+      "note": "Jetty quoted-cookie parsing allowed cookies to be smuggled inside other cookies"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "cookie-h01",
+      "title": "Cookie tossing duplicate",
+      "cwe": "CWE-565",
+      "input": "session=real; session=attacker",
+      "why": "Duplicate names make subdomain-injected cookies ambiguous"
+    },
+    {
+      "id": "cookie-h02",
+      "title": "CRLF Cookie-header split",
+      "cwe": "CWE-93",
+      "input": "sid=abc\r\nX-Injected: true",
+      "why": "Line breaks in a serialized cookie header enable request or response splitting"
+    },
+    {
+      "id": "cookie-h03",
+      "title": "Quoted cookie smuggling",
+      "cwe": "CWE-565",
+      "input": "DISPLAY_LANGUAGE=\"b; JSESSIONID=1337; c=d\"",
+      "why": "CVE-2023-26049 style semicolon smuggling through quoted values"
+    },
+    {
+      "id": "cookie-h04",
+      "title": "Encoded line-feed smuggling",
+      "cwe": "CWE-93",
+      "input": "pref=a%0ab",
+      "why": "Percent-decoded control characters must not reach downstream parsers"
+    },
+    {
+      "id": "cookie-h05",
+      "title": "Malformed percent escape",
+      "cwe": "CWE-20",
+      "input": "pref=100%",
+      "why": "Truncated escapes create parser differentials"
+    },
+    {
+      "id": "cookie-h06",
+      "title": "Prototype-polluting cookie name",
+      "cwe": "CWE-1321",
+      "input": "__proto__=polluted",
+      "why": "Cookie names become object keys in many JavaScript parsers"
+    },
+    {
+      "id": "cookie-h07",
+      "title": "Comma delimiter confusion",
+      "cwe": "CWE-444",
+      "input": "pref=a,b",
+      "why": "Comma-joined cookie headers can be interpreted differently by intermediaries"
+    },
+    {
+      "id": "cookie-h08",
+      "title": "NUL byte cookie value",
+      "cwe": "CWE-20",
+      "input": "sid=abc\u0000def",
+      "why": "NUL bytes can split JavaScript and native parser views"
+    }
+  ],
+  "benign": [
+    {
+      "id": "cookie-b01",
+      "title": "Single session cookie",
+      "input": "session=abc123",
+      "why": "Ordinary opaque session identifier"
+    },
+    {
+      "id": "cookie-b02",
+      "title": "Multiple independent cookies",
+      "input": "session=abc123; theme=dark; locale=en-US",
+      "why": "Standard semicolon-separated cookie header"
+    },
+    {
+      "id": "cookie-b03",
+      "title": "Percent-encoded data",
+      "input": "q=hello%20world%21",
+      "why": "Valid percent escapes preserved as data"
+    },
+    {
+      "id": "cookie-b04",
+      "title": "Balanced quoted value",
+      "input": "pref=\"plain-value\"",
+      "why": "Balanced quotes are valid cookie-octet structure"
+    },
+    {
+      "id": "cookie-b05",
+      "title": "Empty cookie value",
+      "input": "consent=",
+      "why": "Empty values are valid"
+    },
+    {
+      "id": "cookie-b06",
+      "title": "Equals inside value",
+      "input": "token=part1=part2=part3",
+      "why": "Additional equals signs are data after the first separator"
+    },
+    {
+      "id": "cookie-b07",
+      "title": "Object-method cookie name",
+      "input": "toString=one; valueOf=two",
+      "why": "Names that collide with Object methods must remain isolated data"
+    },
+    {
+      "id": "cookie-b08",
+      "title": "Transport whitespace",
+      "input": "a=1;  b=2",
+      "why": "Multiple spaces after a semicolon are valid transport whitespace"
+    }
+  ]
+}

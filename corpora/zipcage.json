@@ -1,0 +1,263 @@
+{
+  "suite": "zipcage",
+  "package": "zipcage",
+  "title": "Zip Slip, archive parser differentials and zip-bomb defense",
+  "attackSurface": "Entries inside an attacker-supplied ZIP archive inspected before extraction",
+  "primaryCwe": "CWE-22",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Path Traversal",
+      "url": "https://owasp.org/www-community/attacks/Path_Traversal"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-22",
+      "url": "https://cwe.mitre.org/data/definitions/22.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-409",
+      "url": "https://cwe.mitre.org/data/definitions/409.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2018-1002200",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-1002200",
+      "note": "Zip Slip archive extraction directory traversal in plexus-archiver"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "zip-h01",
+      "title": "Zip Slip authorized_keys overwrite",
+      "cwe": "CWE-22",
+      "input": {
+        "entries": [
+          {
+            "name": "../../../../root/.ssh/authorized_keys",
+            "data": "attacker-controlled-key"
+          }
+        ]
+      },
+      "why": "CVE-2018-1002200 style archive entry that escapes the extraction root"
+    },
+    {
+      "id": "zip-h02",
+      "title": "Nested parent traversal",
+      "cwe": "CWE-22",
+      "input": {
+        "entries": [
+          {
+            "name": "safe/../../evil.txt",
+            "data": "payload"
+          }
+        ]
+      },
+      "why": "Traversal hidden behind a benign-looking first segment"
+    },
+    {
+      "id": "zip-h03",
+      "title": "Backslash traversal entry",
+      "cwe": "CWE-22",
+      "input": {
+        "entries": [
+          {
+            "name": "..\\evil.txt",
+            "data": "payload"
+          }
+        ]
+      },
+      "why": "Windows separator traversal in a cross-platform archive"
+    },
+    {
+      "id": "zip-h04",
+      "title": "Absolute POSIX entry",
+      "cwe": "CWE-22",
+      "input": {
+        "entries": [
+          {
+            "name": "/etc/passwd",
+            "data": "payload"
+          }
+        ]
+      },
+      "why": "Absolute archive path replaces the extraction root"
+    },
+    {
+      "id": "zip-h05",
+      "title": "Windows drive entry",
+      "cwe": "CWE-22",
+      "input": {
+        "entries": [
+          {
+            "name": "C:/Windows/win.ini",
+            "data": "payload"
+          }
+        ]
+      },
+      "why": "Drive-qualified archive entries can write outside the selected folder"
+    },
+    {
+      "id": "zip-h06",
+      "title": "UNIX symlink escape entry",
+      "cwe": "CWE-59",
+      "input": {
+        "entries": [
+          {
+            "name": "link",
+            "data": "../outside.txt",
+            "unixMode": 41471
+          }
+        ]
+      },
+      "why": "A symlink entry can redirect later extraction writes outside the root"
+    },
+    {
+      "id": "zip-h07",
+      "title": "Duplicate path collision",
+      "cwe": "CWE-22",
+      "input": {
+        "entries": [
+          {
+            "name": "same.txt",
+            "data": "first"
+          },
+          {
+            "name": "same.txt",
+            "data": "second"
+          }
+        ]
+      },
+      "why": "Duplicate entries create extraction-order and overwrite ambiguity"
+    },
+    {
+      "id": "zip-h08",
+      "title": "Deflate ratio bomb",
+      "cwe": "CWE-409",
+      "input": {
+        "entries": [
+          {
+            "name": "bomb",
+            "data": {
+              "repeat": "0",
+              "count": 20000
+            },
+            "method": "deflate"
+          }
+        ]
+      },
+      "why": "Highly compressible data crosses the bounded compression-ratio policy"
+    }
+  ],
+  "benign": [
+    {
+      "id": "zip-b01",
+      "title": "Single plain file",
+      "input": {
+        "entries": [
+          {
+            "name": "plain.txt",
+            "data": "hello"
+          }
+        ]
+      },
+      "why": "Ordinary stored text file"
+    },
+    {
+      "id": "zip-b02",
+      "title": "Nested documentation archive",
+      "input": {
+        "entries": [
+          {
+            "name": "docs/",
+            "directory": true
+          },
+          {
+            "name": "docs/readme.md",
+            "data": "# Readme\n"
+          }
+        ]
+      },
+      "why": "Directory plus nested document is a normal archive shape"
+    },
+    {
+      "id": "zip-b03",
+      "title": "Deflated text file",
+      "input": {
+        "entries": [
+          {
+            "name": "compressed.txt",
+            "data": "repeated text repeated text repeated text",
+            "method": "deflate"
+          }
+        ]
+      },
+      "why": "Normal deflate compression below security limits"
+    },
+    {
+      "id": "zip-b04",
+      "title": "Empty archive",
+      "input": {
+        "entries": []
+      },
+      "why": "A structurally valid empty ZIP is not hostile"
+    },
+    {
+      "id": "zip-b05",
+      "title": "Unicode filename",
+      "input": {
+        "entries": [
+          {
+            "name": "unicode-é-文件.txt",
+            "data": "unicode content"
+          }
+        ]
+      },
+      "why": "UTF-8 filenames are legitimate"
+    },
+    {
+      "id": "zip-b06",
+      "title": "Well-known metadata",
+      "input": {
+        "entries": [
+          {
+            "name": ".well-known/security.txt",
+            "data": "Contact: security@example.com\n"
+          }
+        ]
+      },
+      "why": "Dotfile-style metadata paths are valid archive content"
+    },
+    {
+      "id": "zip-b07",
+      "title": "Names near reserved words",
+      "input": {
+        "entries": [
+          {
+            "name": "constructor.txt",
+            "data": "safe suffix"
+          },
+          {
+            "name": "prototype-notes.txt",
+            "data": "safe prefix"
+          }
+        ]
+      },
+      "why": "Names containing but not exactly matching prototype keys are benign"
+    },
+    {
+      "id": "zip-b08",
+      "title": "Deep supported path",
+      "input": {
+        "entries": [
+          {
+            "name": "a/b/c/d/e/f/g/h/i/j/k/l/m/n/o/p/q/r/s/file.txt",
+            "data": "deep"
+          }
+        ]
+      },
+      "why": "Deep paths within the documented depth limit are valid"
+    }
+  ]
+}

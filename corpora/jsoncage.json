@@ -1,0 +1,156 @@
+{
+  "suite": "jsoncage",
+  "package": "jsoncage",
+  "title": "Prototype pollution, duplicate-key smuggling and JSON denial-of-service defense",
+  "attackSurface": "Attacker-supplied JSON parsed at an API trust boundary",
+  "primaryCwe": "CWE-1321",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Prototype Pollution",
+      "url": "https://owasp.org/www-community/vulnerabilities/Prototype_Pollution"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-1321",
+      "url": "https://cwe.mitre.org/data/definitions/1321.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-400",
+      "url": "https://cwe.mitre.org/data/definitions/400.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2019-10744",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-10744",
+      "note": "lodash defaultsDeep constructor-prototype pollution"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2020-8203",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-8203",
+      "note": "lodash zipObjectDeep prototype pollution"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "json-h01",
+      "title": "Dunder proto pollution",
+      "cwe": "CWE-1321",
+      "input": "{\"__proto__\":{\"polluted\":true}}",
+      "why": "Direct prototype key used by classic JavaScript merge attacks"
+    },
+    {
+      "id": "json-h02",
+      "title": "Constructor prototype pollution",
+      "cwe": "CWE-1321",
+      "input": "{\"constructor\":{\"prototype\":{\"a0\":true}}}",
+      "why": "CVE-2019-10744 style lodash defaultsDeep payload"
+    },
+    {
+      "id": "json-h03",
+      "title": "Prototype property pollution",
+      "cwe": "CWE-1321",
+      "input": "{\"prototype\":{\"polluted\":true}}",
+      "why": "Prototype-shaped keys are dangerous when merged into object graphs"
+    },
+    {
+      "id": "json-h04",
+      "title": "Exact duplicate key",
+      "cwe": "CWE-20",
+      "input": "{\"role\":\"user\",\"role\":\"admin\"}",
+      "why": "Duplicate-key parser differentials can smuggle a second security decision"
+    },
+    {
+      "id": "json-h05",
+      "title": "Unicode duplicate key",
+      "cwe": "CWE-20",
+      "input": "{\"a\":1,\"\\u0061\":2}",
+      "why": "Escaped and literal spellings decode to the same object key"
+    },
+    {
+      "id": "json-h06",
+      "title": "Deep nesting denial of service",
+      "cwe": "CWE-400",
+      "input": {
+        "generate": "nested-json",
+        "depth": 40
+      },
+      "why": "Deep recursion or parser stack use is a classic JSON denial-of-service primitive"
+    },
+    {
+      "id": "json-h07",
+      "title": "Unsafe integer precision",
+      "cwe": "CWE-20",
+      "input": "{\"id\":9007199254740993}",
+      "why": "Values beyond the exact safe-integer range create identity and authorization confusion"
+    },
+    {
+      "id": "json-h08",
+      "title": "Oversized string denial of service",
+      "cwe": "CWE-400",
+      "input": {
+        "generate": "long-string-json",
+        "length": 5000
+      },
+      "why": "Bounded APIs must reject payloads beyond their configured byte budget"
+    }
+  ],
+  "benign": [
+    {
+      "id": "json-b01",
+      "title": "Ordinary user object",
+      "input": "{\"user\":{\"id\":123,\"roles\":[\"editor\"],\"active\":true}}",
+      "why": "Normal nested API object"
+    },
+    {
+      "id": "json-b02",
+      "title": "Unicode content",
+      "input": "{\"name\":\"Aariv café 東京\",\"tags\":[\"unicode\",\"测试\"]}",
+      "why": "Valid UTF-16 JSON text with non-ASCII content"
+    },
+    {
+      "id": "json-b03",
+      "title": "Array of numbers",
+      "input": "[0,1,-1,1.5,null,true,false]",
+      "why": "Ordinary scalar JSON values"
+    },
+    {
+      "id": "json-b04",
+      "title": "Moderate nested object",
+      "input": {
+        "generate": "nested-json",
+        "depth": 12
+      },
+      "why": "Nested configuration data inside the strict depth budget"
+    },
+    {
+      "id": "json-b05",
+      "title": "Boundary safe integer",
+      "input": "{\"id\":9007199254740991}",
+      "why": "Largest exact IEEE-754 safe integer"
+    },
+    {
+      "id": "json-b06",
+      "title": "Keys near prototype words",
+      "input": "{\"prototypeNotes\":\"documentation\",\"constructorName\":\"safe\",\"__proto__suffix\":\"safe\"}",
+      "why": "Strings containing dangerous words are not themselves prototype keys"
+    },
+    {
+      "id": "json-b07",
+      "title": "Escaped unicode distinct keys",
+      "input": "{\"\\u0061\":1,\"b\":2}",
+      "why": "Unicode escape spelling is valid when it does not duplicate another key"
+    },
+    {
+      "id": "json-b08",
+      "title": "Medium string within budget",
+      "input": {
+        "generate": "long-string-json",
+        "length": 512
+      },
+      "why": "Legitimate text under the configured payload cap"
+    }
+  ]
+}

@@ -1,0 +1,133 @@
+{
+  "suite": "headersafe",
+  "package": "headersafe",
+  "title": "HTTP response splitting and header-value injection",
+  "attackSurface": "Attacker-controlled text copied into an HTTP response header value",
+  "primaryCwe": "CWE-113",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "HTTP Response Splitting",
+      "url": "https://owasp.org/www-community/attacks/HTTP_Response_Splitting"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-113",
+      "url": "https://cwe.mitre.org/data/definitions/113.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2016-5325",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2016-5325",
+      "note": "Node.js writeHead reason CRLF response-splitting vulnerability"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "header-h01",
+      "title": "CRLF Set-Cookie injection",
+      "cwe": "CWE-113",
+      "input": "normal\r\nSet-Cookie: session=attacker; HttpOnly",
+      "why": "Classic response splitting that adds a attacker-controlled cookie header"
+    },
+    {
+      "id": "header-h02",
+      "title": "CRLF Location injection",
+      "cwe": "CWE-113",
+      "input": "normal\r\nLocation: https://evil.example/phish",
+      "why": "Injected redirect header in a split response"
+    },
+    {
+      "id": "header-h03",
+      "title": "LF-only header split",
+      "cwe": "CWE-113",
+      "input": "normal\nX-Injected: true",
+      "why": "Bare line feed accepted by some broken intermediaries"
+    },
+    {
+      "id": "header-h04",
+      "title": "CR-only header split",
+      "cwe": "CWE-113",
+      "input": "normal\rX-Injected: true",
+      "why": "Carriage return alone is still a line-control injection primitive"
+    },
+    {
+      "id": "header-h05",
+      "title": "Response body splitting",
+      "cwe": "CWE-113",
+      "input": "cacheable\r\n\r\n<script>alert(1)</script>",
+      "why": "Double line break attempts to move attacker content into the response body"
+    },
+    {
+      "id": "header-h06",
+      "title": "NUL truncation primitive",
+      "cwe": "CWE-113",
+      "input": "normal\u0000\r\nX-Injected: true",
+      "why": "NUL bytes can create parser differentials in downstream native code"
+    },
+    {
+      "id": "header-h07",
+      "title": "Unicode line separator",
+      "cwe": "CWE-113",
+      "input": "normal\u2028X-Injected: true",
+      "why": "Line-separator characters must not survive into header output"
+    },
+    {
+      "id": "header-h08",
+      "title": "DEL control injection",
+      "cwe": "CWE-113",
+      "input": "normal\u007fX-Injected: true",
+      "why": "DEL and other control characters are outside safe HTTP field-value grammar"
+    }
+  ],
+  "benign": [
+    {
+      "id": "header-b01",
+      "title": "Plain cache value",
+      "input": "public, max-age=3600",
+      "why": "Ordinary Cache-Control value with a comma"
+    },
+    {
+      "id": "header-b02",
+      "title": "Content type with parameters",
+      "input": "text/html; charset=utf-8",
+      "why": "Semicolon parameters are valid header syntax"
+    },
+    {
+      "id": "header-b03",
+      "title": "ETag value",
+      "input": "\"v1-4f8a91bc\"",
+      "why": "Quoted ETag text is valid"
+    },
+    {
+      "id": "header-b04",
+      "title": "Latin-1 visible text",
+      "input": "café",
+      "why": "Visible Latin-1 text is not a control injection"
+    },
+    {
+      "id": "header-b05",
+      "title": "Referrer policy token",
+      "input": "strict-origin-when-cross-origin",
+      "why": "Common policy token"
+    },
+    {
+      "id": "header-b06",
+      "title": "Vary list",
+      "input": "Accept-Encoding, Accept-Language",
+      "why": "Comma-separated header-list syntax"
+    },
+    {
+      "id": "header-b07",
+      "title": "CSP nonce source",
+      "input": "script-src 'self' 'nonce-abcdefgh1234'",
+      "why": "Single quotes and spaces are normal CSP text"
+    },
+    {
+      "id": "header-b08",
+      "title": "Request id",
+      "input": "req_01JZX4ZK7Q9B8W8D8W0N2P2Z8F",
+      "why": "Opaque alphanumeric identifier with underscores"
+    }
+  ]
+}

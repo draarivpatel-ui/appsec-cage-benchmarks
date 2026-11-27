@@ -1,0 +1,226 @@
+{
+  "suite": "corscage",
+  "package": "corscage",
+  "title": "CORS origin reflection and preflight policy enforcement",
+  "attackSurface": "Browser Origin and preflight headers evaluated by a credentialed application CORS policy",
+  "primaryCwe": "CWE-346",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "CORS misconfiguration",
+      "url": "https://owasp.org/www-community/attacks/CORS_OriginHeaderScrutiny"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-346",
+      "url": "https://cwe.mitre.org/data/definitions/346.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-942",
+      "url": "https://cwe.mitre.org/data/definitions/942.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2024-25124",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-25124",
+      "note": "Fiber CORS middleware allowed wildcard origin with credentials"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "cors-h01",
+      "title": "Arbitrary evil origin reflection",
+      "cwe": "CWE-942",
+      "input": {
+        "method": "GET",
+        "headers": {
+          "origin": "https://evil.example"
+        }
+      },
+      "why": "Any-site reflection would expose credentialed responses"
+    },
+    {
+      "id": "cors-h02",
+      "title": "Suffix lookalike host",
+      "cwe": "CWE-346",
+      "input": {
+        "method": "GET",
+        "headers": {
+          "origin": "https://app.example.com.evil.example"
+        }
+      },
+      "why": "String-prefix validation mistakes a lookalike suffix for the real application host"
+    },
+    {
+      "id": "cors-h03",
+      "title": "Wrong scheme downgrade",
+      "cwe": "CWE-346",
+      "input": {
+        "method": "GET",
+        "headers": {
+          "origin": "http://app.example.com"
+        }
+      },
+      "why": "HTTP and HTTPS are different origins"
+    },
+    {
+      "id": "cors-h04",
+      "title": "Null origin with credentials",
+      "cwe": "CWE-942",
+      "input": {
+        "method": "GET",
+        "headers": {
+          "origin": "null"
+        }
+      },
+      "why": "Null origins are not trustworthy bearers of credentialed browser state"
+    },
+    {
+      "id": "cors-h05",
+      "title": "Userinfo origin confusion",
+      "cwe": "CWE-346",
+      "input": {
+        "method": "GET",
+        "headers": {
+          "origin": "https://user@app.example.com"
+        }
+      },
+      "why": "Userinfo is not part of a valid web origin"
+    },
+    {
+      "id": "cors-h06",
+      "title": "Path-bearing origin",
+      "cwe": "CWE-346",
+      "input": {
+        "method": "GET",
+        "headers": {
+          "origin": "https://app.example.com/account"
+        }
+      },
+      "why": "Origins are scheme, host and port only, never paths"
+    },
+    {
+      "id": "cors-h07",
+      "title": "Evil preflight reflection",
+      "cwe": "CWE-942",
+      "input": {
+        "method": "OPTIONS",
+        "headers": {
+          "origin": "https://evil.example",
+          "access-control-request-method": "POST",
+          "access-control-request-headers": "content-type"
+        }
+      },
+      "why": "A reflected preflight authorizes credentialed cross-origin writes"
+    },
+    {
+      "id": "cors-h08",
+      "title": "Method escalation preflight",
+      "cwe": "CWE-346",
+      "input": {
+        "method": "OPTIONS",
+        "headers": {
+          "origin": "https://app.example.com",
+          "access-control-request-method": "DELETE",
+          "access-control-request-headers": "content-type"
+        }
+      },
+      "why": "A valid origin still must not receive undeclared methods"
+    }
+  ],
+  "benign": [
+    {
+      "id": "cors-b01",
+      "title": "Exact application origin GET",
+      "input": {
+        "method": "GET",
+        "headers": {
+          "origin": "https://app.example.com"
+        }
+      },
+      "why": "Exact allowlisted origin using a simple request"
+    },
+    {
+      "id": "cors-b02",
+      "title": "Exact application origin POST",
+      "input": {
+        "method": "POST",
+        "headers": {
+          "origin": "https://app.example.com"
+        }
+      },
+      "why": "Allowed method from the exact application origin"
+    },
+    {
+      "id": "cors-b03",
+      "title": "POST preflight with JSON header",
+      "input": {
+        "method": "OPTIONS",
+        "headers": {
+          "origin": "https://app.example.com",
+          "access-control-request-method": "POST",
+          "access-control-request-headers": "content-type"
+        }
+      },
+      "why": "Ordinary JSON POST preflight"
+    },
+    {
+      "id": "cors-b04",
+      "title": "Authorized header preflight",
+      "input": {
+        "method": "OPTIONS",
+        "headers": {
+          "origin": "https://app.example.com",
+          "access-control-request-method": "POST",
+          "access-control-request-headers": "authorization, content-type"
+        }
+      },
+      "why": "Both requested headers are explicitly configured"
+    },
+    {
+      "id": "cors-b05",
+      "title": "GET preflight",
+      "input": {
+        "method": "OPTIONS",
+        "headers": {
+          "origin": "https://app.example.com",
+          "access-control-request-method": "GET"
+        }
+      },
+      "why": "Some browsers preflight non-simple GET requests"
+    },
+    {
+      "id": "cors-b06",
+      "title": "Exact default-port origin",
+      "input": {
+        "method": "GET",
+        "headers": {
+          "origin": "https://app.example.com:443"
+        }
+      },
+      "why": "The explicit default HTTPS port is the same origin"
+    },
+    {
+      "id": "cors-b07",
+      "title": "No-origin server request",
+      "input": {
+        "method": "GET",
+        "headers": {}
+      },
+      "why": "Server-to-server and same-origin navigations may omit Origin"
+    },
+    {
+      "id": "cors-b08",
+      "title": "Headerless actual request",
+      "input": {
+        "method": "POST",
+        "headers": {
+          "origin": "https://app.example.com",
+          "content-type": "application/json"
+        }
+      },
+      "why": "Actual requests do not carry preflight request-method headers"
+    }
+  ]
+}

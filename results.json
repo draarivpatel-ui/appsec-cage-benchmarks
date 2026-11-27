@@ -1,0 +1,1687 @@
+{
+  "schemaVersion": 1,
+  "benchmark": {
+    "name": "appsec-cage-benchmarks",
+    "command": "npm run bench",
+    "quickCommand": "npm run bench -- --quick",
+    "iterations": 1000,
+    "warmup": 100,
+    "quick": false
+  },
+  "environment": {
+    "platform": "darwin",
+    "release": "27.2.0",
+    "arch": "arm64",
+    "cpuModel": "Apple M5",
+    "cpuCount": 10,
+    "nodeVersion": "v26.8.1"
+  },
+  "packages": [
+    {
+      "package": "sentinel-lint",
+      "version": "0.2.0",
+      "title": "Dangerous JavaScript and TypeScript security sinks",
+      "attackSurface": "JavaScript and TypeScript source files scanned for injection-prone security sinks",
+      "primaryCwe": "CWE-95",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Injection",
+          "url": "https://owasp.org/Top10/A03_2021-Injection/"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-78",
+          "url": "https://cwe.mitre.org/data/definitions/78.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-79",
+          "url": "https://cwe.mitre.org/data/definitions/79.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-95",
+          "url": "https://cwe.mitre.org/data/definitions/95.html"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 252.5,
+        "p50Us": 453.5,
+        "p95Us": 1653.625,
+        "p99Us": 4887.583,
+        "maxUs": 12855.334,
+        "meanUs": 699.713,
+        "opsPerSec": 1425.34,
+        "checksum": 2017879583
+      },
+      "cases": [
+        {
+          "id": "sentinel-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "repo/dangerous-eval",
+          "error": null
+        },
+        {
+          "id": "sentinel-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "repo/dangerous-eval",
+          "error": null
+        },
+        {
+          "id": "sentinel-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "repo/dangerous-html-sink",
+          "error": null
+        },
+        {
+          "id": "sentinel-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "repo/dangerous-html-sink",
+          "error": null
+        },
+        {
+          "id": "sentinel-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "repo/dangerous-html-sink",
+          "error": null
+        },
+        {
+          "id": "sentinel-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "repo/child-process-injection",
+          "error": null
+        },
+        {
+          "id": "sentinel-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "repo/child-process-injection",
+          "error": null
+        },
+        {
+          "id": "sentinel-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "repo/dangerous-eval",
+          "error": null
+        },
+        {
+          "id": "sentinel-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sentinel-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sentinel-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sentinel-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sentinel-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sentinel-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sentinel-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sentinel-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "pathcage",
+      "version": "1.0.1",
+      "title": "Path traversal and archive-entry containment",
+      "attackSurface": "User-controlled path fragments resolved under a restricted upload root",
+      "primaryCwe": "CWE-22",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Path Traversal",
+          "url": "https://owasp.org/www-community/attacks/Path_Traversal"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-22",
+          "url": "https://cwe.mitre.org/data/definitions/22.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2018-1002200",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-1002200",
+          "note": "Zip Slip archive-entry traversal in plexus-archiver before 3.6.0"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 4.833,
+        "p50Us": 8.375,
+        "p95Us": 26.417,
+        "p99Us": 50.625,
+        "maxUs": 10978.708,
+        "meanUs": 22.376,
+        "opsPerSec": 42907.48,
+        "checksum": 3686058716
+      },
+      "cases": [
+        {
+          "id": "path-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_PATHCAGE_TRAVERSAL",
+          "error": null
+        },
+        {
+          "id": "path-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_PATHCAGE_TRAVERSAL",
+          "error": null
+        },
+        {
+          "id": "path-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_PATHCAGE_BACKSLASH_SEPARATOR",
+          "error": null
+        },
+        {
+          "id": "path-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_PATHCAGE_ENCODED_TRAVERSAL",
+          "error": null
+        },
+        {
+          "id": "path-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_PATHCAGE_ENCODED_TRAVERSAL",
+          "error": null
+        },
+        {
+          "id": "path-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_PATHCAGE_ABSOLUTE_PATH",
+          "error": null
+        },
+        {
+          "id": "path-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_PATHCAGE_WINDOWS_DRIVE",
+          "error": null
+        },
+        {
+          "id": "path-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_PATHCAGE_WINDOWS_UNC",
+          "error": null
+        },
+        {
+          "id": "path-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "path-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "path-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "path-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "path-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "path-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "path-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "path-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "headersafe",
+      "version": "1.0.1",
+      "title": "HTTP response splitting and header-value injection",
+      "attackSurface": "Attacker-controlled text copied into an HTTP response header value",
+      "primaryCwe": "CWE-113",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "HTTP Response Splitting",
+          "url": "https://owasp.org/www-community/attacks/HTTP_Response_Splitting"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-113",
+          "url": "https://cwe.mitre.org/data/definitions/113.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2016-5325",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2016-5325",
+          "note": "Node.js writeHead reason CRLF response-splitting vulnerability"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 0.208,
+        "p50Us": 3.875,
+        "p95Us": 7.333,
+        "p99Us": 15,
+        "maxUs": 314.958,
+        "meanUs": 3.226,
+        "opsPerSec": 261805.81,
+        "checksum": 454399618
+      },
+      "cases": [
+        {
+          "id": "header-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_HEADSAFE_CRLF",
+          "error": null
+        },
+        {
+          "id": "header-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_HEADSAFE_CRLF",
+          "error": null
+        },
+        {
+          "id": "header-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_HEADSAFE_CRLF",
+          "error": null
+        },
+        {
+          "id": "header-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_HEADSAFE_CRLF",
+          "error": null
+        },
+        {
+          "id": "header-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_HEADSAFE_CRLF",
+          "error": null
+        },
+        {
+          "id": "header-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_HEADSAFE_CRLF",
+          "error": null
+        },
+        {
+          "id": "header-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_HEADSAFE_CONTROL_CHARACTER",
+          "error": null
+        },
+        {
+          "id": "header-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_HEADSAFE_CONTROL_CHARACTER",
+          "error": null
+        },
+        {
+          "id": "header-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "header-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "header-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "header-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "header-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "header-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "header-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "header-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "redirectcage",
+      "version": "1.0.0",
+      "title": "Open redirect and return-url validation",
+      "attackSurface": "A user-controlled next, return, or callback URL reflected into a Location redirect",
+      "primaryCwe": "CWE-601",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Unvalidated Redirects and Forwards",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-601",
+          "url": "https://cwe.mitre.org/data/definitions/601.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2025-27143",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-27143",
+          "note": "Better Auth open redirect caused by scheme-less URL validation bypass"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 0.25,
+        "p50Us": 4,
+        "p95Us": 12.458,
+        "p99Us": 32.916,
+        "maxUs": 58.583,
+        "meanUs": 5.053,
+        "opsPerSec": 176326.66,
+        "checksum": 1134970542
+      },
+      "cases": [
+        {
+          "id": "redirect-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_REDIRECTCAGE_PROTOCOL_RELATIVE",
+          "error": null
+        },
+        {
+          "id": "redirect-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_REDIRECTCAGE_PROTOCOL_RELATIVE",
+          "error": null
+        },
+        {
+          "id": "redirect-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_REDIRECTCAGE_HOST_NOT_ALLOWED",
+          "error": null
+        },
+        {
+          "id": "redirect-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_REDIRECTCAGE_DANGEROUS_SCHEME",
+          "error": null
+        },
+        {
+          "id": "redirect-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_REDIRECTCAGE_USERINFO",
+          "error": null
+        },
+        {
+          "id": "redirect-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_REDIRECTCAGE_PROTOCOL_RELATIVE",
+          "error": null
+        },
+        {
+          "id": "redirect-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_REDIRECTCAGE_DANGEROUS_SCHEME",
+          "error": null
+        },
+        {
+          "id": "redirect-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_REDIRECTCAGE_BACKSLASH",
+          "error": null
+        },
+        {
+          "id": "redirect-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "redirect-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "redirect-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "redirect-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "redirect-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "redirect-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "redirect-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "redirect-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "envcage",
+      "version": "1.0.0",
+      "title": "Environment injection and strict configuration validation",
+      "attackSurface": "Deployment environment variables consumed as application configuration",
+      "primaryCwe": "CWE-15",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Injection",
+          "url": "https://owasp.org/Top10/A03_2021-Injection/"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-15",
+          "url": "https://cwe.mitre.org/data/definitions/15.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-20",
+          "url": "https://cwe.mitre.org/data/definitions/20.html"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 6.458,
+        "p50Us": 19.209,
+        "p95Us": 44.583,
+        "p99Us": 75.5,
+        "maxUs": 314.875,
+        "meanUs": 19.56,
+        "opsPerSec": 49246.63,
+        "checksum": 4134278196
+      },
+      "cases": [
+        {
+          "id": "env-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ENVCAGE_VALIDATION",
+          "error": null
+        },
+        {
+          "id": "env-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ENVCAGE_VALIDATION",
+          "error": null
+        },
+        {
+          "id": "env-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ENVCAGE_VALIDATION",
+          "error": null
+        },
+        {
+          "id": "env-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ENVCAGE_VALIDATION",
+          "error": null
+        },
+        {
+          "id": "env-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ENVCAGE_VALIDATION",
+          "error": null
+        },
+        {
+          "id": "env-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ENVCAGE_VALIDATION",
+          "error": null
+        },
+        {
+          "id": "env-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ENVCAGE_VALIDATION",
+          "error": null
+        },
+        {
+          "id": "env-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ENVCAGE_VALIDATION",
+          "error": null
+        },
+        {
+          "id": "env-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "env-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "env-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "env-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "env-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "env-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "env-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "env-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "cookiecage",
+      "version": "1.0.0",
+      "title": "Cookie smuggling, tossing and strict Cookie-header parsing",
+      "attackSurface": "A browser-supplied Cookie request header parsed by a server-side application",
+      "primaryCwe": "CWE-565",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Session Management Cheat Sheet",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Session_Management_Cheat_Sheet.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-565",
+          "url": "https://cwe.mitre.org/data/definitions/565.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2023-26049",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2023-26049",
+          "note": "Jetty quoted-cookie parsing allowed cookies to be smuggled inside other cookies"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 0.541,
+        "p50Us": 5.5,
+        "p95Us": 22.792,
+        "p99Us": 75,
+        "maxUs": 345.167,
+        "meanUs": 7.951,
+        "opsPerSec": 116997.84,
+        "checksum": 1878087865
+      },
+      "cases": [
+        {
+          "id": "cookie-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_COOKIECAGE_DUPLICATE_COOKIE",
+          "error": null
+        },
+        {
+          "id": "cookie-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_COOKIECAGE_CRLF",
+          "error": null
+        },
+        {
+          "id": "cookie-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_COOKIECAGE_INVALID_VALUE",
+          "error": null
+        },
+        {
+          "id": "cookie-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_COOKIECAGE_CONTROL_CHARACTER",
+          "error": null
+        },
+        {
+          "id": "cookie-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_COOKIECAGE_ENCODING",
+          "error": null
+        },
+        {
+          "id": "cookie-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_COOKIECAGE_PROTOTYPE_KEY",
+          "error": null
+        },
+        {
+          "id": "cookie-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_COOKIECAGE_INVALID_VALUE",
+          "error": null
+        },
+        {
+          "id": "cookie-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_COOKIECAGE_CONTROL_CHARACTER",
+          "error": null
+        },
+        {
+          "id": "cookie-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cookie-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cookie-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cookie-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cookie-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cookie-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cookie-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cookie-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "zipcage",
+      "version": "1.0.0",
+      "title": "Zip Slip, archive parser differentials and zip-bomb defense",
+      "attackSurface": "Entries inside an attacker-supplied ZIP archive inspected before extraction",
+      "primaryCwe": "CWE-22",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Path Traversal",
+          "url": "https://owasp.org/www-community/attacks/Path_Traversal"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-22",
+          "url": "https://cwe.mitre.org/data/definitions/22.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-409",
+          "url": "https://cwe.mitre.org/data/definitions/409.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2018-1002200",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-1002200",
+          "note": "Zip Slip archive extraction directory traversal in plexus-archiver"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 4.667,
+        "p50Us": 31.084,
+        "p95Us": 181.834,
+        "p99Us": 231.708,
+        "maxUs": 451.084,
+        "meanUs": 46.156,
+        "opsPerSec": 21299.25,
+        "checksum": 630552807
+      },
+      "cases": [
+        {
+          "id": "zip-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ZIPCAGE_PATH_TRAVERSAL",
+          "error": null
+        },
+        {
+          "id": "zip-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ZIPCAGE_PATH_TRAVERSAL",
+          "error": null
+        },
+        {
+          "id": "zip-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ZIPCAGE_PATH_TRAVERSAL",
+          "error": null
+        },
+        {
+          "id": "zip-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ZIPCAGE_ABSOLUTE_PATH",
+          "error": null
+        },
+        {
+          "id": "zip-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ZIPCAGE_DRIVE_PATH",
+          "error": null
+        },
+        {
+          "id": "zip-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ZIPCAGE_SYMLINK",
+          "error": null
+        },
+        {
+          "id": "zip-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ZIPCAGE_DUPLICATE_PATH",
+          "error": null
+        },
+        {
+          "id": "zip-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_ZIPCAGE_RATIO_LIMIT",
+          "error": null
+        },
+        {
+          "id": "zip-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "zip-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "zip-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "zip-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "zip-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "zip-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "zip-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "zip-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "logcage",
+      "version": "1.0.0",
+      "title": "CRLF log injection, terminal escape and Unicode spoofing defense",
+      "attackSurface": "Attacker-controlled text written into application logs or terminal output",
+      "primaryCwe": "CWE-117",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Log Injection",
+          "url": "https://owasp.org/www-community/attacks/Log_Injection"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-117",
+          "url": "https://cwe.mitre.org/data/definitions/117.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-93",
+          "url": "https://cwe.mitre.org/data/definitions/93.html"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 0.958,
+        "p50Us": 3.834,
+        "p95Us": 9.5,
+        "p99Us": 33.875,
+        "maxUs": 732,
+        "meanUs": 6.097,
+        "opsPerSec": 150759.46,
+        "checksum": 3726443394
+      },
+      "cases": [
+        {
+          "id": "log-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "log-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "log-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "log-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "log-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "log-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "log-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "log-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "log-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "log-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "log-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "log-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "log-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "log-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "log-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "log-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "corscage",
+      "version": "1.0.0",
+      "title": "CORS origin reflection and preflight policy enforcement",
+      "attackSurface": "Browser Origin and preflight headers evaluated by a credentialed application CORS policy",
+      "primaryCwe": "CWE-346",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "CORS misconfiguration",
+          "url": "https://owasp.org/www-community/attacks/CORS_OriginHeaderScrutiny"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-346",
+          "url": "https://cwe.mitre.org/data/definitions/346.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-942",
+          "url": "https://cwe.mitre.org/data/definitions/942.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2024-25124",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2024-25124",
+          "note": "Fiber CORS middleware allowed wildcard origin with credentials"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 1.208,
+        "p50Us": 5.542,
+        "p95Us": 26.583,
+        "p99Us": 72.5,
+        "maxUs": 580.583,
+        "meanUs": 9.028,
+        "opsPerSec": 101363.77,
+        "checksum": 2040234505
+      },
+      "cases": [
+        {
+          "id": "cors-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CORS_ORIGIN_NOT_ALLOWED",
+          "error": null
+        },
+        {
+          "id": "cors-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CORS_ORIGIN_NOT_ALLOWED",
+          "error": null
+        },
+        {
+          "id": "cors-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CORS_ORIGIN_NOT_ALLOWED",
+          "error": null
+        },
+        {
+          "id": "cors-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CORS_NULL_ORIGIN",
+          "error": null
+        },
+        {
+          "id": "cors-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CORS_ORIGIN_MALFORMED",
+          "error": null
+        },
+        {
+          "id": "cors-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CORS_ORIGIN_MALFORMED",
+          "error": null
+        },
+        {
+          "id": "cors-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CORS_ORIGIN_NOT_ALLOWED",
+          "error": null
+        },
+        {
+          "id": "cors-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CORS_METHOD_NOT_ALLOWED",
+          "error": null
+        },
+        {
+          "id": "cors-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cors-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cors-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cors-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cors-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cors-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "cors-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "non-cors-pass-through",
+          "error": null
+        },
+        {
+          "id": "cors-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "jsoncage",
+      "version": "1.0.0",
+      "title": "Prototype pollution, duplicate-key smuggling and JSON denial-of-service defense",
+      "attackSurface": "Attacker-supplied JSON parsed at an API trust boundary",
+      "primaryCwe": "CWE-1321",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Prototype Pollution",
+          "url": "https://owasp.org/www-community/vulnerabilities/Prototype_Pollution"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-1321",
+          "url": "https://cwe.mitre.org/data/definitions/1321.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-400",
+          "url": "https://cwe.mitre.org/data/definitions/400.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2019-10744",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2019-10744",
+          "note": "lodash defaultsDeep constructor-prototype pollution"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2020-8203",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-8203",
+          "note": "lodash zipObjectDeep prototype pollution"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 3.958,
+        "p50Us": 7.625,
+        "p95Us": 36.292,
+        "p99Us": 77.708,
+        "maxUs": 211.333,
+        "meanUs": 12.753,
+        "opsPerSec": 74606.68,
+        "checksum": 1803494504
+      },
+      "cases": [
+        {
+          "id": "json-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "JSONCAGE_PROTOTYPE_KEY",
+          "error": null
+        },
+        {
+          "id": "json-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "JSONCAGE_PROTOTYPE_KEY",
+          "error": null
+        },
+        {
+          "id": "json-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "JSONCAGE_PROTOTYPE_KEY",
+          "error": null
+        },
+        {
+          "id": "json-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "JSONCAGE_DUPLICATE_KEY",
+          "error": null
+        },
+        {
+          "id": "json-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "JSONCAGE_DUPLICATE_KEY",
+          "error": null
+        },
+        {
+          "id": "json-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "JSONCAGE_MAX_DEPTH",
+          "error": null
+        },
+        {
+          "id": "json-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "JSONCAGE_UNSAFE_INTEGER",
+          "error": null
+        },
+        {
+          "id": "json-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "JSONCAGE_MAX_BYTES",
+          "error": null
+        },
+        {
+          "id": "json-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "json-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "json-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "json-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "json-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "json-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "json-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "json-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "packageCount": 10,
+    "hostileTotal": 80,
+    "hostileBlocked": 80,
+    "hostileErrors": 0,
+    "hostileBlockRate": 1,
+    "benignTotal": 80,
+    "benignFalsePositives": 0,
+    "benignErrors": 0,
+    "benignFalsePositiveRate": 0,
+    "allHostileBlocked": true,
+    "zeroFalsePositives": true
+  }
+}

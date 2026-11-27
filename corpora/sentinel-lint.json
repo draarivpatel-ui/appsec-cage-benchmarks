@@ -1,0 +1,185 @@
+{
+  "suite": "sentinel-lint",
+  "package": "sentinel-lint",
+  "title": "Dangerous JavaScript and TypeScript security sinks",
+  "attackSurface": "JavaScript and TypeScript source files scanned for injection-prone security sinks",
+  "primaryCwe": "CWE-95",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Injection",
+      "url": "https://owasp.org/Top10/A03_2021-Injection/"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-78",
+      "url": "https://cwe.mitre.org/data/definitions/78.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-79",
+      "url": "https://cwe.mitre.org/data/definitions/79.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-95",
+      "url": "https://cwe.mitre.org/data/definitions/95.html"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "sentinel-h01",
+      "title": "Direct eval sink",
+      "cwe": "CWE-95",
+      "input": {
+        "filename": "src/eval.js",
+        "content": "export function run(userInput) {\n  return eval(userInput);\n}\n"
+      },
+      "why": "Dynamic code execution of attacker-controlled text"
+    },
+    {
+      "id": "sentinel-h02",
+      "title": "new Function sink",
+      "cwe": "CWE-95",
+      "input": {
+        "filename": "src/function-constructor.js",
+        "content": "export function compile(expression) {\n  return new Function('input', 'return ' + expression);\n}\n"
+      },
+      "why": "The Function constructor is another dynamic JavaScript evaluation sink"
+    },
+    {
+      "id": "sentinel-h03",
+      "title": "innerHTML injection sink",
+      "cwe": "CWE-79",
+      "input": {
+        "filename": "src/render.js",
+        "content": "export function render(node, userHtml) {\n  node.innerHTML = userHtml;\n}\n"
+      },
+      "why": "Unsanitized HTML assignment creates DOM cross-site scripting risk"
+    },
+    {
+      "id": "sentinel-h04",
+      "title": "document.write injection sink",
+      "cwe": "CWE-79",
+      "input": {
+        "filename": "src/legacy.js",
+        "content": "export function legacy(payload) {\n  document.write(payload);\n}\n"
+      },
+      "why": "document.write inserts attacker-controlled markup into the document"
+    },
+    {
+      "id": "sentinel-h05",
+      "title": "dangerouslySetInnerHTML sink",
+      "cwe": "CWE-79",
+      "input": {
+        "filename": "src/View.jsx",
+        "content": "export function View(props) {\n  return <div dangerouslySetInnerHTML={{ __html: props.html }} />;\n}\n"
+      },
+      "why": "React's raw HTML escape hatch is dangerous with user-controlled markup"
+    },
+    {
+      "id": "sentinel-h06",
+      "title": "Template interpolation shell injection",
+      "cwe": "CWE-78",
+      "input": {
+        "filename": "src/run.js",
+        "content": "import { exec } from 'node:child_process';\n\nexport function list(directory) {\n  exec(`ls ${directory}`);\n}\n"
+      },
+      "why": "Interpolated shell commands enable command injection"
+    },
+    {
+      "id": "sentinel-h07",
+      "title": "Concatenated shell injection",
+      "cwe": "CWE-78",
+      "input": {
+        "filename": "src/convert.js",
+        "content": "import { exec } from 'node:child_process';\n\nexport function convert(filename) {\n  exec('convert ' + filename + ' output.png');\n}\n"
+      },
+      "why": "String-concatenated command arguments enable shell metacharacter injection"
+    },
+    {
+      "id": "sentinel-h08",
+      "title": "TypeScript eval sink",
+      "cwe": "CWE-95",
+      "input": {
+        "filename": "src/evaluate.ts",
+        "content": "export function evaluate(source: string): unknown {\n  return eval(source);\n}\n"
+      },
+      "why": "TypeScript source has the same dynamic code execution risk"
+    }
+  ],
+  "benign": [
+    {
+      "id": "sentinel-b01",
+      "title": "Constant shell command",
+      "input": {
+        "filename": "src/constant-command.js",
+        "content": "import { exec } from 'node:child_process';\n\nexport function lint() {\n  exec('ls -la');\n}\n"
+      },
+      "why": "A constant command string has no attacker-controlled interpolation"
+    },
+    {
+      "id": "sentinel-b02",
+      "title": "execFile argument array",
+      "input": {
+        "filename": "src/exec-file.js",
+        "content": "import { execFile } from 'node:child_process';\n\nexport function list(done) {\n  execFile('ls', ['-la'], done);\n}\n"
+      },
+      "why": "execFile with an argument array avoids shell interpretation"
+    },
+    {
+      "id": "sentinel-b03",
+      "title": "textContent rendering",
+      "input": {
+        "filename": "src/text.js",
+        "content": "export function render(node, userText) {\n  node.textContent = userText;\n}\n"
+      },
+      "why": "textContent does not parse markup"
+    },
+    {
+      "id": "sentinel-b04",
+      "title": "JSON parsing",
+      "input": {
+        "filename": "src/parse.js",
+        "content": "export function parse(text) {\n  return JSON.parse(text);\n}\n"
+      },
+      "why": "JSON parsing is not dynamic JavaScript execution"
+    },
+    {
+      "id": "sentinel-b05",
+      "title": "Comment mentioning eval",
+      "input": {
+        "filename": "src/comments.js",
+        "content": "// eval(input) was removed for security reasons.\nexport const safe = true;\n"
+      },
+      "why": "Comments are documentation, not executable sinks"
+    },
+    {
+      "id": "sentinel-b06",
+      "title": "String mentioning innerHTML",
+      "input": {
+        "filename": "src/copy.js",
+        "content": "export const guidance = 'Prefer textContent over innerHTML assignments.';\n"
+      },
+      "why": "A string mentioning an API is not itself a sink"
+    },
+    {
+      "id": "sentinel-b07",
+      "title": "Static template rendering",
+      "input": {
+        "filename": "src/template.js",
+        "content": "export function render(name) {\n  return `<p>${escapeHtml(name)}</p>`;\n}\n\nfunction escapeHtml(value) {\n  return String(value).replace(/[&<>\"']/g, (ch) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '\"': '&quot;', \"'\": '&#39;' })[ch]);\n}\n"
+      },
+      "why": "Escaped text interpolation does not use a raw HTML sink"
+    },
+    {
+      "id": "sentinel-b08",
+      "title": "TypeScript pure function",
+      "input": {
+        "filename": "src/add.ts",
+        "content": "export function add(left: number, right: number): number {\n  return left + right;\n}\n"
+      },
+      "why": "A pure TypeScript function has no scanned dangerous sink"
+    }
+  ]
+}

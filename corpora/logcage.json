@@ -1,0 +1,132 @@
+{
+  "suite": "logcage",
+  "package": "logcage",
+  "title": "CRLF log injection, terminal escape and Unicode spoofing defense",
+  "attackSurface": "Attacker-controlled text written into application logs or terminal output",
+  "primaryCwe": "CWE-117",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Log Injection",
+      "url": "https://owasp.org/www-community/attacks/Log_Injection"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-117",
+      "url": "https://cwe.mitre.org/data/definitions/117.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-93",
+      "url": "https://cwe.mitre.org/data/definitions/93.html"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "log-h01",
+      "title": "CRLF forged log line",
+      "cwe": "CWE-117",
+      "input": "user alice\r\nINFO admin login succeeded",
+      "why": "Classic forged entry created by line splitting"
+    },
+    {
+      "id": "log-h02",
+      "title": "LF-only forged log line",
+      "cwe": "CWE-117",
+      "input": "request failed\nERROR authentication bypassed",
+      "why": "Bare LF can create a second line in line-oriented log processors"
+    },
+    {
+      "id": "log-h03",
+      "title": "ANSI red-green log spoof",
+      "cwe": "CWE-117",
+      "input": "failed \u001b[31mvisible as red\u001b[0m",
+      "why": "Terminal control sequences alter operator interpretation"
+    },
+    {
+      "id": "log-h04",
+      "title": "OSC-8 hyperlink disguise",
+      "cwe": "CWE-117",
+      "input": "download \u001b]8;;https://evil.example\u001b\\label\u001b]8;;\u001b\\ complete",
+      "why": "Terminal hyperlinks can disguise an attacker-controlled destination"
+    },
+    {
+      "id": "log-h05",
+      "title": "OSC-52 clipboard write",
+      "cwe": "CWE-117",
+      "input": "notice \u001b]52;c;SGVsbG8=\u0007 done",
+      "why": "Clipboard-writing terminal sequences are active terminal behavior"
+    },
+    {
+      "id": "log-h06",
+      "title": "Right-to-left override spoof",
+      "cwe": "CWE-117",
+      "input": "invoice-\u202e4sserpdrow.pdf",
+      "why": "Bidirectional controls visually reorder apparently harmless text"
+    },
+    {
+      "id": "log-h07",
+      "title": "NEL line break",
+      "cwe": "CWE-117",
+      "input": "first\u0085second",
+      "why": "NEL is a line break in several terminal and log-processing contexts"
+    },
+    {
+      "id": "log-h08",
+      "title": "Zero-width keyword evasion",
+      "cwe": "CWE-117",
+      "input": "pass\u200bword reset requested",
+      "why": "Zero-width format characters change visual text while evading simple keyword filters"
+    }
+  ],
+  "benign": [
+    {
+      "id": "log-b01",
+      "title": "Plain ASCII event",
+      "input": "user completed checkout in 214 ms",
+      "why": "Ordinary single-line application event"
+    },
+    {
+      "id": "log-b02",
+      "title": "Unicode user text",
+      "input": "hello café 東京 مرحبا",
+      "why": "Non-ASCII natural language text is legitimate"
+    },
+    {
+      "id": "log-b03",
+      "title": "Astral emoji text",
+      "input": "deployment finished 🚀",
+      "why": "Valid surrogate pairs are ordinary Unicode text"
+    },
+    {
+      "id": "log-b04",
+      "title": "Punctuation-heavy diagnostic",
+      "input": "build ok: 12/12 passed, cache=warm, duration=1.8s",
+      "why": "Punctuation and slashes are not controls"
+    },
+    {
+      "id": "log-b05",
+      "title": "URL-like text",
+      "input": "downloaded https://example.com/assets/report.pdf",
+      "why": "Plain URL text does not use terminal hyperlink controls"
+    },
+    {
+      "id": "log-b06",
+      "title": "Percent-encoded input",
+      "input": "path query q=hello%20world",
+      "why": "Percent signs are visible log text"
+    },
+    {
+      "id": "log-b07",
+      "title": "Empty log message",
+      "input": "",
+      "why": "An empty message is not hostile"
+    },
+    {
+      "id": "log-b08",
+      "title": "Long ordinary sentence",
+      "input": "worker finished queue maintenance and checkpointed every completed job without errors",
+      "why": "Length alone is not an injection primitive"
+    }
+  ]
+}

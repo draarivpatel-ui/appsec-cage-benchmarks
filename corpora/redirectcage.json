@@ -1,0 +1,133 @@
+{
+  "suite": "redirectcage",
+  "package": "redirectcage",
+  "title": "Open redirect and return-url validation",
+  "attackSurface": "A user-controlled next, return, or callback URL reflected into a Location redirect",
+  "primaryCwe": "CWE-601",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Unvalidated Redirects and Forwards",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Unvalidated_Redirects_and_Forwards_Cheat_Sheet.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-601",
+      "url": "https://cwe.mitre.org/data/definitions/601.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2025-27143",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2025-27143",
+      "note": "Better Auth open redirect caused by scheme-less URL validation bypass"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "redirect-h01",
+      "title": "Protocol-relative external host",
+      "cwe": "CWE-601",
+      "input": "//evil.example/phish",
+      "why": "Browser treats leading double slash as an external scheme-relative URL"
+    },
+    {
+      "id": "redirect-h02",
+      "title": "Path-normalized authority bypass",
+      "cwe": "CWE-601",
+      "input": "/..//evil.example/phish",
+      "why": "Normalization can turn a path-looking value into a protocol-relative URL"
+    },
+    {
+      "id": "redirect-h03",
+      "title": "Absolute external HTTPS URL",
+      "cwe": "CWE-601",
+      "input": "https://evil.example/login",
+      "why": "Direct attacker-controlled origin"
+    },
+    {
+      "id": "redirect-h04",
+      "title": "JavaScript scheme",
+      "cwe": "CWE-601",
+      "input": "javascript:alert(1)",
+      "why": "Dangerous scheme must never be reflected into navigation"
+    },
+    {
+      "id": "redirect-h05",
+      "title": "Userinfo host spoof",
+      "cwe": "CWE-601",
+      "input": "https://app.example.com@evil.example/",
+      "why": "Visual host text before the at sign hides the real evil host"
+    },
+    {
+      "id": "redirect-h06",
+      "title": "Encoded protocol-relative URL",
+      "cwe": "CWE-601",
+      "input": "/%2f%2fevil.example/phish",
+      "why": "Encoded slashes are decoded by downstream components into authority syntax"
+    },
+    {
+      "id": "redirect-h07",
+      "title": "Data HTML scheme",
+      "cwe": "CWE-601",
+      "input": "data:text/html;base64,PHNjcmlwdD5hbGVydCgxKTwvc2NyaXB0Pg==",
+      "why": "Data URLs can carry active markup"
+    },
+    {
+      "id": "redirect-h08",
+      "title": "Backslash authority confusion",
+      "cwe": "CWE-601",
+      "input": "https:\\evil.example/phish",
+      "why": "Browsers and URL parsers differ on backslash treatment"
+    }
+  ],
+  "benign": [
+    {
+      "id": "redirect-b01",
+      "title": "Root-relative dashboard",
+      "input": "/dashboard",
+      "why": "Normal internal post-login destination"
+    },
+    {
+      "id": "redirect-b02",
+      "title": "Relative path with query",
+      "input": "/projects/42?tab=settings",
+      "why": "Internal path with a query string"
+    },
+    {
+      "id": "redirect-b03",
+      "title": "Relative path with fragment",
+      "input": "/docs/getting-started#install",
+      "why": "Internal path with a fragment"
+    },
+    {
+      "id": "redirect-b04",
+      "title": "Nested relative path",
+      "input": "/teams/security/reviews/2026",
+      "why": "Ordinary deep application route"
+    },
+    {
+      "id": "redirect-b05",
+      "title": "At sign in a relative route",
+      "input": "/users/@security",
+      "why": "A single slash followed by at text is not userinfo authority syntax"
+    },
+    {
+      "id": "redirect-b06",
+      "title": "Encoded space in internal route",
+      "input": "/search?q=hello%20world",
+      "why": "Percent encoding is legitimate inside query data"
+    },
+    {
+      "id": "redirect-b07",
+      "title": "Allowlisted absolute origin",
+      "input": "https://app.example.com/account/security",
+      "why": "Absolute URL on the explicitly allowlisted application origin"
+    },
+    {
+      "id": "redirect-b08",
+      "title": "Canonical slash root",
+      "input": "/",
+      "why": "Safe default return target"
+    }
+  ]
+}

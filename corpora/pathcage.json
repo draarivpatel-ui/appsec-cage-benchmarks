@@ -1,0 +1,133 @@
+{
+  "suite": "pathcage",
+  "package": "pathcage",
+  "title": "Path traversal and archive-entry containment",
+  "attackSurface": "User-controlled path fragments resolved under a restricted upload root",
+  "primaryCwe": "CWE-22",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Path Traversal",
+      "url": "https://owasp.org/www-community/attacks/Path_Traversal"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-22",
+      "url": "https://cwe.mitre.org/data/definitions/22.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2018-1002200",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2018-1002200",
+      "note": "Zip Slip archive-entry traversal in plexus-archiver before 3.6.0"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "path-h01",
+      "title": "Dot-dot slash escape",
+      "cwe": "CWE-22",
+      "input": "../../etc/passwd",
+      "why": "Classic parent traversal out of an upload root"
+    },
+    {
+      "id": "path-h02",
+      "title": "Nested upload escape",
+      "cwe": "CWE-22",
+      "input": "uploads/../../../root/.ssh/authorized_keys",
+      "why": "Zip Slip style nested path that escapes after a valid-looking prefix"
+    },
+    {
+      "id": "path-h03",
+      "title": "Backslash traversal",
+      "cwe": "CWE-22",
+      "input": "..\\..\\windows\\system32\\config\\sam",
+      "why": "Windows separator form of the same traversal primitive"
+    },
+    {
+      "id": "path-h04",
+      "title": "Percent-encoded traversal",
+      "cwe": "CWE-22",
+      "input": "%2e%2e%2f%2e%2e%2fsecret.txt",
+      "why": "Encoded separator and parent segments that must be decoded before validation"
+    },
+    {
+      "id": "path-h05",
+      "title": "Double-encoded traversal",
+      "cwe": "CWE-22",
+      "input": "%252e%252e%252fsecret.txt",
+      "why": "Nested encoding layer used to bypass one-pass decoding filters"
+    },
+    {
+      "id": "path-h06",
+      "title": "POSIX absolute path",
+      "cwe": "CWE-22",
+      "input": "/etc/passwd",
+      "why": "Absolute path replacement instead of containment under the root"
+    },
+    {
+      "id": "path-h07",
+      "title": "Windows drive absolute path",
+      "cwe": "CWE-22",
+      "input": "C:/Windows/win.ini",
+      "why": "Drive-qualified paths must not become extraction or upload targets"
+    },
+    {
+      "id": "path-h08",
+      "title": "UNC share path",
+      "cwe": "CWE-22",
+      "input": "//server/share/secret.txt",
+      "why": "Network share paths can escape both local roots and expected filesystem semantics"
+    }
+  ],
+  "benign": [
+    {
+      "id": "path-b01",
+      "title": "Flat filename",
+      "input": "report.pdf",
+      "why": "Ordinary upload filename"
+    },
+    {
+      "id": "path-b02",
+      "title": "Nested asset path",
+      "input": "images/hero.png",
+      "why": "Normal slash-separated nested asset"
+    },
+    {
+      "id": "path-b03",
+      "title": "User-scoped upload",
+      "input": "uploads/user-123/avatar.webp",
+      "why": "Realistic user-scoped object key"
+    },
+    {
+      "id": "path-b04",
+      "title": "Current-directory normalization",
+      "input": "./publications/2026/q1.pdf",
+      "why": "Benign dot segment that remains inside the root"
+    },
+    {
+      "id": "path-b05",
+      "title": "Unicode filename",
+      "input": "unicode-é-文件.txt",
+      "why": "Non-ASCII filenames are legitimate user data"
+    },
+    {
+      "id": "path-b06",
+      "title": "Spaces in filename",
+      "input": "meeting notes final.txt",
+      "why": "Spaces inside a segment are normal on desktop and web uploads"
+    },
+    {
+      "id": "path-b07",
+      "title": "Well-known metadata path",
+      "input": ".well-known/security.txt",
+      "why": "Leading dot segments can be legitimate when they are not traversal"
+    },
+    {
+      "id": "path-b08",
+      "title": "Archive-like nested document",
+      "input": "docs/releases/2026/readme.md",
+      "why": "Deep but ordinary document path"
+    }
+  ]
+}

