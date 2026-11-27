@@ -1,0 +1,145 @@
+{
+  "suite": "@aarivbuildz/regex-shield",
+  "package": "@aarivbuildz/regex-shield",
+  "title": "ReDoS ambiguity and catastrophic-backtracking detection",
+  "attackSurface": "Untrusted regular expressions accepted by validators, routing configuration or plugins",
+  "primaryCwe": "CWE-1333",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Regular expression Denial of Service",
+      "url": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-1333",
+      "url": "https://cwe.mitre.org/data/definitions/1333.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2021-23424",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-23424",
+      "note": "ansi-html nested-repetition ReDoS"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2020-7661",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-7661",
+      "note": "url-regex overlapping-quantifier ReDoS"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2021-3807",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-3807",
+      "note": "ansi-regex regular-expression denial of service"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "regex-h01",
+      "title": "Nested quantifier overlap",
+      "cwe": "CWE-1333",
+      "input": "(a+)+$",
+      "why": "Nested unbounded repetition over the same character creates exponential partitions"
+    },
+    {
+      "id": "regex-h02",
+      "title": "Overlapping alternation branches",
+      "cwe": "CWE-1333",
+      "input": "^(a|aa)+$",
+      "why": "Both alternation branches can consume overlapping prefixes"
+    },
+    {
+      "id": "regex-h03",
+      "title": "Word and optional-space loop",
+      "cwe": "CWE-1333",
+      "input": "^(\\w+\\s?)*$",
+      "why": "The canonical teaching ReDoS shape allows many ways to consume whitespace-separated input"
+    },
+    {
+      "id": "regex-h04",
+      "title": "Nested digit repetition",
+      "cwe": "CWE-1333",
+      "input": "^(\\d+)*$",
+      "why": "A digit run can be partitioned across nested repetitions in many ways"
+    },
+    {
+      "id": "regex-h05",
+      "title": "Adjacent digit quantifiers",
+      "cwe": "CWE-1333",
+      "input": "\\d+\\d+$",
+      "why": "Adjacent unbounded digit scans overlap and backtrack quadratically"
+    },
+    {
+      "id": "regex-h06",
+      "title": "Wildcard chain",
+      "cwe": "CWE-1333",
+      "input": ".*.*.*$",
+      "why": "Three unbounded wildcard scans create high-order backtracking"
+    },
+    {
+      "id": "regex-h07",
+      "title": "Quantified backreference loop",
+      "cwe": "CWE-1333",
+      "input": "(?:(a)\\1)+$",
+      "why": "A quantified loop containing a backreference multiplies matching possibilities"
+    },
+    {
+      "id": "regex-h08",
+      "title": "Nullable quantified body",
+      "cwe": "CWE-1333",
+      "input": "(?:a?)*$",
+      "why": "A loop body that can match empty input creates degenerate backtracking behavior"
+    }
+  ],
+  "benign": [
+    {
+      "id": "regex-b01",
+      "title": "Bounded lowercase slug",
+      "input": "^[a-z]{3,12}$",
+      "why": "A bounded character class with no nested ambiguity"
+    },
+    {
+      "id": "regex-b02",
+      "title": "Date shape",
+      "input": "^\\d{4}-\\d{2}-\\d{2}$",
+      "why": "Fixed-width digit groups separated by literals"
+    },
+    {
+      "id": "regex-b03",
+      "title": "Hex color",
+      "input": "^#[0-9a-fA-F]{6}$",
+      "why": "Exactly six hexadecimal digits after a literal prefix"
+    },
+    {
+      "id": "regex-b04",
+      "title": "Bounded asset path",
+      "input": "^/assets/[A-Za-z0-9/_-]{1,120}$",
+      "why": "A bounded path character class after a literal prefix"
+    },
+    {
+      "id": "regex-b05",
+      "title": "Fixed-stride base64 groups",
+      "input": "^(?:[A-Za-z0-9+/]{4})*$",
+      "why": "Fixed-length units have exactly one partition per input run"
+    },
+    {
+      "id": "regex-b06",
+      "title": "Bounded non-whitespace token",
+      "input": "^[^\\s]{8,72}$",
+      "why": "A bounded negated class without adjacent ambiguous repetition"
+    },
+    {
+      "id": "regex-b07",
+      "title": "Positive decimal identifier",
+      "input": "^[1-9][0-9]{0,9}$",
+      "why": "A bounded decimal identifier with a fixed leading nonzero digit"
+    },
+    {
+      "id": "regex-b08",
+      "title": "Bounded label alphabet",
+      "input": "^[A-Za-z0-9 _-]{1,80}$",
+      "why": "A bounded single character class with no quantifier nesting"
+    }
+  ]
+}

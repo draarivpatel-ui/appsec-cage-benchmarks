@@ -60,13 +60,13 @@
         "iterations": 1000,
         "warmup": 100,
         "workloadCases": 16,
-        "minUs": 252.5,
-        "p50Us": 453.5,
-        "p95Us": 1653.625,
-        "p99Us": 4887.583,
-        "maxUs": 12855.334,
-        "meanUs": 699.713,
-        "opsPerSec": 1425.34,
+        "minUs": 277.375,
+        "p50Us": 400,
+        "p95Us": 887.833,
+        "p99Us": 1946.875,
+        "maxUs": 5250.75,
+        "meanUs": 485.711,
+        "opsPerSec": 2050.83,
         "checksum": 2017879583
       },
       "cases": [
@@ -223,13 +223,13 @@
         "iterations": 1000,
         "warmup": 100,
         "workloadCases": 16,
-        "minUs": 4.833,
-        "p50Us": 8.375,
-        "p95Us": 26.417,
-        "p99Us": 50.625,
-        "maxUs": 10978.708,
-        "meanUs": 22.376,
-        "opsPerSec": 42907.48,
+        "minUs": 5.292,
+        "p50Us": 8.5,
+        "p95Us": 35.542,
+        "p99Us": 180.958,
+        "maxUs": 1627.75,
+        "meanUs": 18.279,
+        "opsPerSec": 52046.06,
         "checksum": 3686058716
       },
       "cases": [
@@ -387,12 +387,12 @@
         "warmup": 100,
         "workloadCases": 16,
         "minUs": 0.208,
-        "p50Us": 3.875,
-        "p95Us": 7.333,
-        "p99Us": 15,
-        "maxUs": 314.958,
-        "meanUs": 3.226,
-        "opsPerSec": 261805.81,
+        "p50Us": 3.791,
+        "p95Us": 5.542,
+        "p99Us": 35.125,
+        "maxUs": 420.458,
+        "meanUs": 3.816,
+        "opsPerSec": 216669.09,
         "checksum": 454399618
       },
       "cases": [
@@ -549,13 +549,13 @@
         "iterations": 1000,
         "warmup": 100,
         "workloadCases": 16,
-        "minUs": 0.25,
-        "p50Us": 4,
-        "p95Us": 12.458,
-        "p99Us": 32.916,
-        "maxUs": 58.583,
-        "meanUs": 5.053,
-        "opsPerSec": 176326.66,
+        "minUs": 0.5,
+        "p50Us": 5.625,
+        "p95Us": 27.791,
+        "p99Us": 115.458,
+        "maxUs": 568.958,
+        "meanUs": 11.176,
+        "opsPerSec": 68385.81,
         "checksum": 1134970542
       },
       "cases": [
@@ -711,13 +711,13 @@
         "iterations": 1000,
         "warmup": 100,
         "workloadCases": 16,
-        "minUs": 6.458,
-        "p50Us": 19.209,
-        "p95Us": 44.583,
-        "p99Us": 75.5,
-        "maxUs": 314.875,
-        "meanUs": 19.56,
-        "opsPerSec": 49246.63,
+        "minUs": 6.25,
+        "p50Us": 19.042,
+        "p95Us": 57.791,
+        "p99Us": 104.583,
+        "maxUs": 492.417,
+        "meanUs": 22.99,
+        "opsPerSec": 41873.56,
         "checksum": 4134278196
       },
       "cases": [
@@ -874,13 +874,13 @@
         "iterations": 1000,
         "warmup": 100,
         "workloadCases": 16,
-        "minUs": 0.541,
-        "p50Us": 5.5,
-        "p95Us": 22.792,
-        "p99Us": 75,
-        "maxUs": 345.167,
-        "meanUs": 7.951,
-        "opsPerSec": 116997.84,
+        "minUs": 0.583,
+        "p50Us": 8,
+        "p95Us": 55.959,
+        "p99Us": 129.709,
+        "maxUs": 492.584,
+        "meanUs": 17.891,
+        "opsPerSec": 51652.89,
         "checksum": 1878087865
       },
       "cases": [
@@ -1042,13 +1042,13 @@
         "iterations": 1000,
         "warmup": 100,
         "workloadCases": 16,
-        "minUs": 4.667,
-        "p50Us": 31.084,
-        "p95Us": 181.834,
-        "p99Us": 231.708,
-        "maxUs": 451.084,
-        "meanUs": 46.156,
-        "opsPerSec": 21299.25,
+        "minUs": 6.667,
+        "p50Us": 50.334,
+        "p95Us": 287.375,
+        "p99Us": 640.125,
+        "maxUs": 6377.917,
+        "meanUs": 91.049,
+        "opsPerSec": 10809.72,
         "checksum": 630552807
       },
       "cases": [
@@ -1205,12 +1205,12 @@
         "warmup": 100,
         "workloadCases": 16,
         "minUs": 0.958,
-        "p50Us": 3.834,
-        "p95Us": 9.5,
-        "p99Us": 33.875,
-        "maxUs": 732,
-        "meanUs": 6.097,
-        "opsPerSec": 150759.46,
+        "p50Us": 5.25,
+        "p95Us": 15.416,
+        "p99Us": 50.958,
+        "maxUs": 496.292,
+        "meanUs": 8.862,
+        "opsPerSec": 102588.22,
         "checksum": 3726443394
       },
       "cases": [
@@ -1372,13 +1372,13 @@
         "iterations": 1000,
         "warmup": 100,
         "workloadCases": 16,
-        "minUs": 1.208,
-        "p50Us": 5.542,
-        "p95Us": 26.583,
-        "p99Us": 72.5,
-        "maxUs": 580.583,
-        "meanUs": 9.028,
-        "opsPerSec": 101363.77,
+        "minUs": 2.083,
+        "p50Us": 14.875,
+        "p95Us": 43.208,
+        "p99Us": 112.958,
+        "maxUs": 326.875,
+        "meanUs": 19.205,
+        "opsPerSec": 47570.44,
         "checksum": 2040234505
       },
       "cases": [
@@ -1546,13 +1546,13 @@
         "iterations": 1000,
         "warmup": 100,
         "workloadCases": 16,
-        "minUs": 3.958,
-        "p50Us": 7.625,
-        "p95Us": 36.292,
-        "p99Us": 77.708,
-        "maxUs": 211.333,
-        "meanUs": 12.753,
-        "opsPerSec": 74606.68,
+        "minUs": 8,
+        "p50Us": 17.75,
+        "p95Us": 77.75,
+        "p99Us": 140.042,
+        "maxUs": 683.458,
+        "meanUs": 29.779,
+        "opsPerSec": 32300.48,
         "checksum": 1803494504
       },
       "cases": [
@@ -1669,15 +1669,1341 @@
           "error": null
         }
       ]
+    },
+    {
+      "package": "@aarivbuildz/jwtguard",
+      "version": "1.0.1",
+      "title": "JWT algorithm confusion, dangerous-header and claim validation",
+      "attackSurface": "Attacker-supplied JWTs verified by an API with an explicit HS256 allowlist",
+      "primaryCwe": "CWE-347",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "JSON Web Token Cheat Sheet",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-347",
+          "url": "https://cwe.mitre.org/data/definitions/347.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-345",
+          "url": "https://cwe.mitre.org/data/definitions/345.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2015-9235",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2015-9235",
+          "note": "node-jsonwebtoken algorithm-confusion class"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 14.333,
+        "p50Us": 50.958,
+        "p95Us": 147.292,
+        "p99Us": 336.917,
+        "maxUs": 1285.167,
+        "meanUs": 68.54,
+        "opsPerSec": 14324.64,
+        "checksum": 690090036
+      },
+      "cases": [
+        {
+          "id": "jwt-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_JWTGUARD_MALFORMED_TOKEN",
+          "error": null
+        },
+        {
+          "id": "jwt-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_JWTGUARD_INVALID_ALGORITHM",
+          "error": null
+        },
+        {
+          "id": "jwt-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_JWTGUARD_DANGEROUS_HEADER",
+          "error": null
+        },
+        {
+          "id": "jwt-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_JWTGUARD_INVALID_KID",
+          "error": null
+        },
+        {
+          "id": "jwt-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_JWTGUARD_DUPLICATE_JSON_KEY",
+          "error": null
+        },
+        {
+          "id": "jwt-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_JWTGUARD_UNSAFE_KEY",
+          "error": null
+        },
+        {
+          "id": "jwt-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_JWTGUARD_MISSING_CLAIM",
+          "error": null
+        },
+        {
+          "id": "jwt-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ERR_JWTGUARD_EXPIRED",
+          "error": null
+        },
+        {
+          "id": "jwt-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "jwt-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "jwt-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "jwt-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "jwt-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "jwt-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "jwt-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "jwt-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "@aarivbuildz/csrfshield",
+      "version": "1.0.1",
+      "title": "Cross-site request forgery token, origin and fetch-metadata enforcement",
+      "attackSurface": "State-changing browser requests carrying a signed double-submit CSRF token",
+      "primaryCwe": "CWE-352",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Cross-Site Request Forgery Prevention Cheat Sheet",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-352",
+          "url": "https://cwe.mitre.org/data/definitions/352.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-346",
+          "url": "https://cwe.mitre.org/data/definitions/346.html"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 7.208,
+        "p50Us": 43.042,
+        "p95Us": 142.583,
+        "p99Us": 646.167,
+        "maxUs": 2761,
+        "meanUs": 67.688,
+        "opsPerSec": 14511.55,
+        "checksum": 3351153944
+      },
+      "cases": [
+        {
+          "id": "csrf-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "CROSS_SITE_REQUEST",
+          "error": null
+        },
+        {
+          "id": "csrf-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ORIGIN_MISMATCH",
+          "error": null
+        },
+        {
+          "id": "csrf-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "ORIGIN_MISMATCH",
+          "error": null
+        },
+        {
+          "id": "csrf-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "MISSING_COOKIE",
+          "error": null
+        },
+        {
+          "id": "csrf-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "INVALID_TOKEN",
+          "error": null
+        },
+        {
+          "id": "csrf-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "INVALID_TOKEN",
+          "error": null
+        },
+        {
+          "id": "csrf-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "EXPIRED_TOKEN",
+          "error": null
+        },
+        {
+          "id": "csrf-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "SESSION_MISMATCH",
+          "error": null
+        },
+        {
+          "id": "csrf-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csrf-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csrf-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csrf-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csrf-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csrf-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csrf-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csrf-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "@aarivbuildz/hookverify",
+      "version": "1.0.1",
+      "title": "Webhook signature forgery, replay and encoding validation",
+      "attackSurface": "Byte-exact webhook deliveries verified before JSON parsing or business logic",
+      "primaryCwe": "CWE-347",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Replay attacks",
+          "url": "https://owasp.org/www-community/attacks/Replay_Attacks"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-347",
+          "url": "https://cwe.mitre.org/data/definitions/347.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-294",
+          "url": "https://cwe.mitre.org/data/definitions/294.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-444",
+          "url": "https://cwe.mitre.org/data/definitions/444.html"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 12.208,
+        "p50Us": 45.458,
+        "p95Us": 304.292,
+        "p99Us": 630.834,
+        "maxUs": 1262.167,
+        "meanUs": 89.347,
+        "opsPerSec": 11031.56,
+        "checksum": 190518550
+      },
+      "cases": [
+        {
+          "id": "hook-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "SIGNATURE_MISMATCH",
+          "error": null
+        },
+        {
+          "id": "hook-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "INVALID_SIGNATURE",
+          "error": null
+        },
+        {
+          "id": "hook-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "TIMESTAMP_OUT_OF_TOLERANCE",
+          "error": null
+        },
+        {
+          "id": "hook-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "TIMESTAMP_OUT_OF_TOLERANCE",
+          "error": null
+        },
+        {
+          "id": "hook-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "MISSING_HEADER",
+          "error": null
+        },
+        {
+          "id": "hook-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "INVALID_SIGNATURE",
+          "error": null
+        },
+        {
+          "id": "hook-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "INVALID_HEADER",
+          "error": null
+        },
+        {
+          "id": "hook-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "REPLAYED_DELIVERY",
+          "error": null
+        },
+        {
+          "id": "hook-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "valid",
+          "error": null
+        },
+        {
+          "id": "hook-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "valid",
+          "error": null
+        },
+        {
+          "id": "hook-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "valid",
+          "error": null
+        },
+        {
+          "id": "hook-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "valid",
+          "error": null
+        },
+        {
+          "id": "hook-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "valid",
+          "error": null
+        },
+        {
+          "id": "hook-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "valid",
+          "error": null
+        },
+        {
+          "id": "hook-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "valid",
+          "error": null
+        },
+        {
+          "id": "hook-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "valid",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "@aarivbuildz/urlguard",
+      "version": "0.1.0",
+      "title": "SSRF private-address, metadata and redirect-chain defense",
+      "attackSurface": "Server-side outbound URLs and redirect hops validated before fetch",
+      "primaryCwe": "CWE-918",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Server Side Request Forgery Prevention Cheat Sheet",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-918",
+          "url": "https://cwe.mitre.org/data/definitions/918.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-601",
+          "url": "https://cwe.mitre.org/data/definitions/601.html"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 1.708,
+        "p50Us": 9.5,
+        "p95Us": 47.584,
+        "p99Us": 141.375,
+        "maxUs": 3117.917,
+        "meanUs": 21.503,
+        "opsPerSec": 44792.92,
+        "checksum": 3352597120
+      },
+      "cases": [
+        {
+          "id": "url-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "PRIVATE_IP",
+          "error": null
+        },
+        {
+          "id": "url-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "PRIVATE_IP",
+          "error": null
+        },
+        {
+          "id": "url-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "HOST_DENIED",
+          "error": null
+        },
+        {
+          "id": "url-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "USERINFO_FORBIDDEN",
+          "error": null
+        },
+        {
+          "id": "url-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "UNSAFE_SCHEME",
+          "error": null
+        },
+        {
+          "id": "url-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "PRIVATE_IP",
+          "error": null
+        },
+        {
+          "id": "url-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "UNSAFE_SCHEME",
+          "error": null
+        },
+        {
+          "id": "url-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "REDIRECT_LOOP",
+          "error": null
+        },
+        {
+          "id": "url-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "url-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "url-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "url-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "url-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "url-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "url-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "url-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "@aarivbuildz/regex-shield",
+      "version": "1.0.0",
+      "title": "ReDoS ambiguity and catastrophic-backtracking detection",
+      "attackSurface": "Untrusted regular expressions accepted by validators, routing configuration or plugins",
+      "primaryCwe": "CWE-1333",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Regular expression Denial of Service",
+          "url": "https://owasp.org/www-community/attacks/Regular_expression_Denial_of_Service_-_ReDoS"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-1333",
+          "url": "https://cwe.mitre.org/data/definitions/1333.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2021-23424",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-23424",
+          "note": "ansi-html nested-repetition ReDoS"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2020-7661",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-7661",
+          "note": "url-regex overlapping-quantifier ReDoS"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2021-3807",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2021-3807",
+          "note": "ansi-regex regular-expression denial of service"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 4.5,
+        "p50Us": 16.708,
+        "p95Us": 107.625,
+        "p99Us": 437.666,
+        "maxUs": 1097.083,
+        "meanUs": 36.9,
+        "opsPerSec": 25986.77,
+        "checksum": 2500624677
+      },
+      "cases": [
+        {
+          "id": "regex-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "RS001",
+          "error": null
+        },
+        {
+          "id": "regex-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "RS003",
+          "error": null
+        },
+        {
+          "id": "regex-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "RS001",
+          "error": null
+        },
+        {
+          "id": "regex-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "RS001",
+          "error": null
+        },
+        {
+          "id": "regex-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "RS002",
+          "error": null
+        },
+        {
+          "id": "regex-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "RS007",
+          "error": null
+        },
+        {
+          "id": "regex-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "RS004",
+          "error": null
+        },
+        {
+          "id": "regex-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "RS006",
+          "error": null
+        },
+        {
+          "id": "regex-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "regex-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "regex-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "regex-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "regex-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "regex-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "regex-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "regex-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "@aarivbuildz/csvshield",
+      "version": "1.0.0",
+      "title": "CSV formula-injection and spreadsheet payload defense",
+      "attackSurface": "CSV exports opened by spreadsheet applications at an administrative workstation",
+      "primaryCwe": "CWE-1236",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "CSV Injection",
+          "url": "https://owasp.org/www-community/attacks/CSV_Injection"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-1236",
+          "url": "https://cwe.mitre.org/data/definitions/1236.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-74",
+          "url": "https://cwe.mitre.org/data/definitions/74.html"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 2.083,
+        "p50Us": 5.291,
+        "p95Us": 25.917,
+        "p99Us": 100.209,
+        "maxUs": 8547.833,
+        "meanUs": 17.923,
+        "opsPerSec": 52668.31,
+        "checksum": 2078549376
+      },
+      "cases": [
+        {
+          "id": "csv-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "leading-trigger",
+          "error": null
+        },
+        {
+          "id": "csv-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "leading-trigger",
+          "error": null
+        },
+        {
+          "id": "csv-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "leading-trigger",
+          "error": null
+        },
+        {
+          "id": "csv-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "leading-trigger",
+          "error": null
+        },
+        {
+          "id": "csv-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "obfuscated-trigger",
+          "error": null
+        },
+        {
+          "id": "csv-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "obfuscated-trigger",
+          "error": null
+        },
+        {
+          "id": "csv-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "leading-trigger",
+          "error": null
+        },
+        {
+          "id": "csv-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "leading-trigger",
+          "error": null
+        },
+        {
+          "id": "csv-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csv-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csv-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csv-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csv-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csv-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csv-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        },
+        {
+          "id": "csv-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "accepted",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "@aarivbuildz/htmlclean",
+      "version": "0.1.0",
+      "title": "HTML script, event, URL and foreign-content injection neutralization",
+      "attackSurface": "Untrusted HTML rendered into a browser document after allowlist sanitization",
+      "primaryCwe": "CWE-79",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Cross Site Scripting Prevention Cheat Sheet",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-79",
+          "url": "https://cwe.mitre.org/data/definitions/79.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-20",
+          "url": "https://cwe.mitre.org/data/definitions/20.html"
+        },
+        {
+          "type": "CVE",
+          "id": "CVE-2020-26870",
+          "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-26870",
+          "note": "DOMPurify mutation-XSS sanitizer bypass class"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 1.458,
+        "p50Us": 4,
+        "p95Us": 14.541,
+        "p99Us": 47.25,
+        "maxUs": 4139.709,
+        "meanUs": 12.615,
+        "opsPerSec": 76687.85,
+        "checksum": 3118037394
+      },
+      "cases": [
+        {
+          "id": "html-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "html-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "html-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "html-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "html-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "html-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "html-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "html-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "neutralized",
+          "error": null
+        },
+        {
+          "id": "html-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "html-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "html-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "html-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "html-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "html-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "html-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        },
+        {
+          "id": "html-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "unchanged",
+          "error": null
+        }
+      ]
+    },
+    {
+      "package": "@aarivbuildz/secretsweep",
+      "version": "1.0.0",
+      "title": "Hard-coded secret and high-entropy credential detection",
+      "attackSurface": "Source text scanned for committed credentials before publication or deployment",
+      "primaryCwe": "CWE-798",
+      "references": [
+        {
+          "type": "OWASP",
+          "id": "Secrets Management Cheat Sheet",
+          "url": "https://cheatsheetseries.owasp.org/cheatsheets/Secrets_Management_Cheat_Sheet.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-798",
+          "url": "https://cwe.mitre.org/data/definitions/798.html"
+        },
+        {
+          "type": "CWE",
+          "id": "CWE-200",
+          "url": "https://cwe.mitre.org/data/definitions/200.html"
+        }
+      ],
+      "correctness": {
+        "hostileTotal": 8,
+        "hostileBlocked": 8,
+        "hostileErrors": 0,
+        "hostileBlockRate": 1,
+        "benignTotal": 8,
+        "benignFalsePositives": 0,
+        "benignErrors": 0,
+        "benignFalsePositiveRate": 0,
+        "caseCount": 16
+      },
+      "latency": {
+        "iterations": 1000,
+        "warmup": 100,
+        "workloadCases": 16,
+        "minUs": 9.959,
+        "p50Us": 33.042,
+        "p95Us": 292.709,
+        "p99Us": 2022.75,
+        "maxUs": 14636.75,
+        "meanUs": 116.556,
+        "opsPerSec": 5728.02,
+        "checksum": 1222563352
+      },
+      "cases": [
+        {
+          "id": "sweep-h01",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "generic-secret-assignment",
+          "error": null
+        },
+        {
+          "id": "sweep-h02",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "generic-secret-assignment",
+          "error": null
+        },
+        {
+          "id": "sweep-h03",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "generic-secret-assignment",
+          "error": null
+        },
+        {
+          "id": "sweep-h04",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "generic-secret-assignment",
+          "error": null
+        },
+        {
+          "id": "sweep-h05",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "db-uri-password",
+          "error": null
+        },
+        {
+          "id": "sweep-h06",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "jwt-in-config",
+          "error": null
+        },
+        {
+          "id": "sweep-h07",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "pem-private-key",
+          "error": null
+        },
+        {
+          "id": "sweep-h08",
+          "kind": "hostile",
+          "blocked": true,
+          "signal": "high-entropy-generic",
+          "error": null
+        },
+        {
+          "id": "sweep-b01",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sweep-b02",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sweep-b03",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sweep-b04",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sweep-b05",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sweep-b06",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sweep-b07",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        },
+        {
+          "id": "sweep-b08",
+          "kind": "benign",
+          "blocked": false,
+          "signal": "no-findings",
+          "error": null
+        }
+      ]
     }
   ],
   "summary": {
-    "packageCount": 10,
-    "hostileTotal": 80,
-    "hostileBlocked": 80,
+    "packageCount": 18,
+    "hostileTotal": 144,
+    "hostileBlocked": 144,
     "hostileErrors": 0,
     "hostileBlockRate": 1,
-    "benignTotal": 80,
+    "benignTotal": 144,
     "benignFalsePositives": 0,
     "benignErrors": 0,
     "benignFalsePositiveRate": 0,

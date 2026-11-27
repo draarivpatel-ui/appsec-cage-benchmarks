@@ -11,7 +11,15 @@ export const PACKAGE_ORDER = Object.freeze([
   'zipcage',
   'logcage',
   'corscage',
-  'jsoncage'
+  'jsoncage',
+  '@aarivbuildz/jwtguard',
+  '@aarivbuildz/csrfshield',
+  '@aarivbuildz/hookverify',
+  '@aarivbuildz/urlguard',
+  '@aarivbuildz/regex-shield',
+  '@aarivbuildz/csvshield',
+  '@aarivbuildz/htmlclean',
+  '@aarivbuildz/secretsweep'
 ]);
 
 function isPlainObject(value) {
@@ -36,6 +44,60 @@ export function longStringJsonPayload(length) {
   return '{"text":"' + 'x'.repeat(length) + '"}';
 }
 
+export function syntheticHighEntropy(length, seed = 1) {
+  if (!Number.isSafeInteger(length) || length < 1) {
+    throw new Error('synthetic high-entropy length must be a positive safe integer');
+  }
+  if (!Number.isSafeInteger(seed) || seed < 0) {
+    throw new Error('synthetic high-entropy seed must be a nonnegative safe integer');
+  }
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+  let output = '';
+  for (let index = 0; index < length; index += 1) {
+    output += alphabet[(index * 19 + seed * 11 + Math.floor(index / 7)) % alphabet.length];
+  }
+  return output;
+}
+
+function syntheticBase64Url(length, seed) {
+  const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789-_';
+  let output = '';
+  for (let index = 0; index < length; index += 1) {
+    output += alphabet[(index * 17 + seed * 13) % alphabet.length];
+  }
+  return output;
+}
+
+export function secretsweepPayload(kind, seed = 1) {
+  const token = syntheticHighEntropy(48, seed);
+  if (kind === 'api-key-assignment') {
+    return 'const apiKey = "' + token + '";\n';
+  }
+  if (kind === 'secret-assignment') {
+    return 'secret = "' + syntheticHighEntropy(52, seed) + '"\n';
+  }
+  if (kind === 'token-assignment') {
+    return 'access_token: "' + syntheticHighEntropy(44, seed) + '"\n';
+  }
+  if (kind === 'password-assignment') {
+    return 'password = "' + syntheticHighEntropy(40, seed) + '"\n';
+  }
+  if (kind === 'db-uri-password') {
+    return 'databaseUrl = "postgresql://service:' + syntheticHighEntropy(32, seed) + '@db.internal/app"\n';
+  }
+  if (kind === 'jwt-config') {
+    return 'jwt = "eyJ' + syntheticBase64Url(20, seed) + '.' + syntheticBase64Url(36, seed + 1) + '.' + syntheticBase64Url(43, seed + 2) + '"\n';
+  }
+  if (kind === 'pem-private-key') {
+    const body = syntheticHighEntropy(320, seed).match(/.{1,64}/g).join('\n');
+    return '-----BEGIN PRIVATE KEY-----\n' + body + '\n-----END PRIVATE KEY-----\n';
+  }
+  if (kind === 'unlabelled-token') {
+    return 'note = "' + token + '"\n';
+  }
+  throw new Error('unknown secretsweep payload kind ' + String(kind));
+}
+
 export function materializeInput(input) {
   if (!isPlainObject(input)) {
     return input;
@@ -45,6 +107,9 @@ export function materializeInput(input) {
   }
   if (input.generate === 'long-string-json') {
     return longStringJsonPayload(input.length);
+  }
+  if (input.generate === 'secretsweep-text') {
+    return secretsweepPayload(input.secretKind, input.seed);
   }
   return input;
 }

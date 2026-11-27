@@ -284,8 +284,8 @@ export function validateReport(report) {
   if (!report.environment || typeof report.environment.nodeVersion !== 'string' || typeof report.environment.cpuModel !== 'string') {
     errors.push('environment metadata is missing');
   }
-  if (!Array.isArray(report.packages) || report.packages.length !== 10) {
-    errors.push('report must contain exactly ten package suites');
+  if (!Array.isArray(report.packages) || report.packages.length !== 18) {
+    errors.push('report must contain exactly eighteen package suites');
   } else {
     for (const suite of report.packages) {
       if (typeof suite.package !== 'string' || typeof suite.version !== 'string') {

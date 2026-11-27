@@ -1,0 +1,138 @@
+{
+  "suite": "@aarivbuildz/htmlclean",
+  "package": "@aarivbuildz/htmlclean",
+  "title": "HTML script, event, URL and foreign-content injection neutralization",
+  "attackSurface": "Untrusted HTML rendered into a browser document after allowlist sanitization",
+  "primaryCwe": "CWE-79",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Cross Site Scripting Prevention Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross_Site_Scripting_Prevention_Cheat_Sheet.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-79",
+      "url": "https://cwe.mitre.org/data/definitions/79.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-20",
+      "url": "https://cwe.mitre.org/data/definitions/20.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2020-26870",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2020-26870",
+      "note": "DOMPurify mutation-XSS sanitizer bypass class"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "html-h01",
+      "title": "Script element injection",
+      "cwe": "CWE-79",
+      "input": "<p>Hello</p><script>alert(1)</script>",
+      "why": "A script tag in rendered HTML executes attacker-controlled JavaScript"
+    },
+    {
+      "id": "html-h02",
+      "title": "Event-handler attribute",
+      "cwe": "CWE-79",
+      "input": "<p onclick=\"alert(1)\">Hello</p>",
+      "why": "Inline event handlers execute attacker-controlled JavaScript"
+    },
+    {
+      "id": "html-h03",
+      "title": "JavaScript URL",
+      "cwe": "CWE-79",
+      "input": "<a href=\"javascript:alert(1)\">link</a>",
+      "why": "A javascript scheme in href executes when the link is activated"
+    },
+    {
+      "id": "html-h04",
+      "title": "Entity-obfuscated JavaScript URL",
+      "cwe": "CWE-79",
+      "input": "<a href=\"jav&#x61;script:alert(1)\">link</a>",
+      "why": "Character references can obscure a dangerous URL scheme"
+    },
+    {
+      "id": "html-h05",
+      "title": "SVG foreign-content script",
+      "cwe": "CWE-79",
+      "input": "<svg><script>alert(1)</script></svg><p>ok</p>",
+      "why": "Foreign SVG content can carry active markup into HTML"
+    },
+    {
+      "id": "html-h06",
+      "title": "Iframe srcdoc payload",
+      "cwe": "CWE-79",
+      "input": "<iframe srcdoc=\"<script>alert(1)</script>\"></iframe><p>ok</p>",
+      "why": "Nested browsing contexts can embed attacker-controlled documents"
+    },
+    {
+      "id": "html-h07",
+      "title": "Unsafe inline style URL",
+      "cwe": "CWE-79",
+      "input": "<p style=\"background:url(javascript:alert(1))\">Hello</p>",
+      "why": "Inline CSS is a separate attack context and is disabled by the strict policy"
+    },
+    {
+      "id": "html-h08",
+      "title": "MathML foreign-content script",
+      "cwe": "CWE-79",
+      "input": "<math><mtext><script>alert(1)</script></mtext></math><p>ok</p>",
+      "why": "MathML foreign content can participate in mutation-XSS parser differentials"
+    }
+  ],
+  "benign": [
+    {
+      "id": "html-b01",
+      "title": "Paragraph with bold text",
+      "input": "<p>Hello <b>world</b></p>",
+      "why": "Simple formatting markup inside the allowlist"
+    },
+    {
+      "id": "html-b02",
+      "title": "HTTPS link with title",
+      "input": "<a href=\"https://example.com/docs\" title=\"Docs\">Docs</a>",
+      "why": "A safe HTTPS link using only allowed attributes"
+    },
+    {
+      "id": "html-b03",
+      "title": "Unordered list",
+      "input": "<ul><li>one</li><li>two</li></ul>",
+      "why": "Basic list markup inside the allowlist"
+    },
+    {
+      "id": "html-b04",
+      "title": "Unicode text",
+      "input": "<p>unicode café 東京</p>",
+      "why": "International text is valid HTML content"
+    },
+    {
+      "id": "html-b05",
+      "title": "Strong and emphasis text",
+      "input": "<p><strong>bold</strong> and <em>emphasis</em></p>",
+      "why": "Common semantic inline markup"
+    },
+    {
+      "id": "html-b06",
+      "title": "Relative site link",
+      "input": "<a href=\"/docs\">Relative docs</a>",
+      "why": "Relative same-site links are safe under the configured policy"
+    },
+    {
+      "id": "html-b07",
+      "title": "Escaped comparison text",
+      "input": "<p>5 &lt; 6 &amp; 7 &gt; 2</p>",
+      "why": "Already canonical escaped text remains unchanged"
+    },
+    {
+      "id": "html-b08",
+      "title": "Plain paragraph",
+      "input": "<p>plain text</p>",
+      "why": "The smallest ordinary paragraph"
+    }
+  ]
+}

@@ -1,0 +1,176 @@
+{
+  "suite": "@aarivbuildz/csrfshield",
+  "package": "@aarivbuildz/csrfshield",
+  "title": "Cross-site request forgery token, origin and fetch-metadata enforcement",
+  "attackSurface": "State-changing browser requests carrying a signed double-submit CSRF token",
+  "primaryCwe": "CWE-352",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Cross-Site Request Forgery Prevention Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Cross-Site_Request_Forgery_Prevention_Cheat_Sheet.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-352",
+      "url": "https://cwe.mitre.org/data/definitions/352.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-346",
+      "url": "https://cwe.mitre.org/data/definitions/346.html"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "csrf-h01",
+      "title": "Cross-site fetch metadata",
+      "cwe": "CWE-352",
+      "input": {
+        "scenario": "valid",
+        "fetchSite": "cross-site"
+      },
+      "why": "A cross-site browser request is rejected before token comparison"
+    },
+    {
+      "id": "csrf-h02",
+      "title": "Unapproved origin",
+      "cwe": "CWE-346",
+      "input": {
+        "scenario": "valid",
+        "origin": "https://evil.example"
+      },
+      "why": "A credentialed form post from another origin must not pass"
+    },
+    {
+      "id": "csrf-h03",
+      "title": "Null origin",
+      "cwe": "CWE-346",
+      "input": {
+        "scenario": "valid",
+        "origin": "null"
+      },
+      "why": "Null browser origins are not trusted application origins"
+    },
+    {
+      "id": "csrf-h04",
+      "title": "Missing double-submit cookie",
+      "cwe": "CWE-352",
+      "input": {
+        "scenario": "missing-cookie"
+      },
+      "why": "A submitted token is meaningless without its matching signed cookie"
+    },
+    {
+      "id": "csrf-h05",
+      "title": "Cookie and token mismatch",
+      "cwe": "CWE-352",
+      "input": {
+        "scenario": "mismatched-token"
+      },
+      "why": "Two independently valid tokens must still match exactly"
+    },
+    {
+      "id": "csrf-h06",
+      "title": "Forged token suffix",
+      "cwe": "CWE-347",
+      "input": {
+        "scenario": "forged-token"
+      },
+      "why": "A tampered token must fail signature and canonical encoding checks"
+    },
+    {
+      "id": "csrf-h07",
+      "title": "Expired token replay",
+      "cwe": "CWE-613",
+      "input": {
+        "scenario": "expired-token"
+      },
+      "why": "A captured token remains invalid after its lifetime"
+    },
+    {
+      "id": "csrf-h08",
+      "title": "Session mismatch",
+      "cwe": "CWE-352",
+      "input": {
+        "scenario": "session-mismatch"
+      },
+      "why": "A token issued for one session cannot authorize another session"
+    }
+  ],
+  "benign": [
+    {
+      "id": "csrf-b01",
+      "title": "Valid header token POST",
+      "input": {
+        "scenario": "valid",
+        "tokenMode": "header"
+      },
+      "why": "Ordinary state-changing request with a matching header token and cookie"
+    },
+    {
+      "id": "csrf-b02",
+      "title": "Valid JSON body token",
+      "input": {
+        "scenario": "valid",
+        "tokenMode": "body-object"
+      },
+      "why": "JSON-style integrations can carry the token in the request body"
+    },
+    {
+      "id": "csrf-b03",
+      "title": "Valid form body token",
+      "input": {
+        "scenario": "valid",
+        "tokenMode": "body-form"
+      },
+      "why": "Classic form posts carry the token in the encoded form field"
+    },
+    {
+      "id": "csrf-b04",
+      "title": "No fetch metadata header",
+      "input": {
+        "scenario": "valid",
+        "fetchSite": null
+      },
+      "why": "Older browsers may omit Fetch Metadata while still sending a valid origin"
+    },
+    {
+      "id": "csrf-b05",
+      "title": "Same-site fetch metadata",
+      "input": {
+        "scenario": "valid",
+        "fetchSite": "same-site"
+      },
+      "why": "The default policy permits same-site browser navigation"
+    },
+    {
+      "id": "csrf-b06",
+      "title": "Referer fallback",
+      "input": {
+        "scenario": "valid",
+        "origin": null,
+        "referer": "https://app.example.com/form"
+      },
+      "why": "A browser may omit Origin but send a same-origin Referer"
+    },
+    {
+      "id": "csrf-b07",
+      "title": "Valid PATCH request",
+      "input": {
+        "scenario": "valid",
+        "method": "PATCH"
+      },
+      "why": "PATCH is state changing and uses the same token rules"
+    },
+    {
+      "id": "csrf-b08",
+      "title": "Masked token submission",
+      "input": {
+        "scenario": "valid",
+        "tokenMode": "masked"
+      },
+      "why": "Masked tokens unmask to the cookie token and resist compression-oracle reuse"
+    }
+  ]
+}

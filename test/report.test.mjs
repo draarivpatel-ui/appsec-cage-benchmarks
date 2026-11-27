@@ -16,8 +16,8 @@ test('committed JSON report has the required schema and perfect correctness summ
   assert.deepEqual(validateReport(report), []);
   assert.equal(report.summary.hostileBlockRate, 1);
   assert.equal(report.summary.benignFalsePositiveRate, 0);
-  assert.equal(report.summary.hostileTotal, 80);
-  assert.equal(report.summary.benignTotal, 80);
+  assert.equal(report.summary.hostileTotal, 144);
+  assert.equal(report.summary.benignTotal, 144);
 });
 
 test('RESULTS.md and README.md embed numbers from the committed JSON report', async () => {

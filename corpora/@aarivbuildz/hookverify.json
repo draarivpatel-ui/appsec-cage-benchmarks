@@ -1,0 +1,201 @@
+{
+  "suite": "@aarivbuildz/hookverify",
+  "package": "@aarivbuildz/hookverify",
+  "title": "Webhook signature forgery, replay and encoding validation",
+  "attackSurface": "Byte-exact webhook deliveries verified before JSON parsing or business logic",
+  "primaryCwe": "CWE-347",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Replay attacks",
+      "url": "https://owasp.org/www-community/attacks/Replay_Attacks"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-347",
+      "url": "https://cwe.mitre.org/data/definitions/347.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-294",
+      "url": "https://cwe.mitre.org/data/definitions/294.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-444",
+      "url": "https://cwe.mitre.org/data/definitions/444.html"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "hook-h01",
+      "title": "GitHub wrong-secret signature",
+      "cwe": "CWE-347",
+      "input": {
+        "provider": "github",
+        "scenario": "wrong-signature",
+        "body": "{\"event\":\"push\",\"delivery\":\"evt-101\"}"
+      },
+      "why": "A well-shaped signature made with the wrong secret must not verify"
+    },
+    {
+      "id": "hook-h02",
+      "title": "GitHub malformed hex signature",
+      "cwe": "CWE-20",
+      "input": {
+        "provider": "github",
+        "scenario": "malformed-signature",
+        "body": "{\"event\":\"push\",\"delivery\":\"evt-102\"}"
+      },
+      "why": "Non-hex signature text must be rejected before comparison"
+    },
+    {
+      "id": "hook-h03",
+      "title": "Stripe stale timestamp replay",
+      "cwe": "CWE-294",
+      "input": {
+        "provider": "stripe",
+        "scenario": "stale-timestamp",
+        "body": "{\"type\":\"invoice.paid\",\"id\":\"evt-103\"}"
+      },
+      "why": "An old captured Stripe delivery is outside the replay tolerance"
+    },
+    {
+      "id": "hook-h04",
+      "title": "Stripe future timestamp",
+      "cwe": "CWE-294",
+      "input": {
+        "provider": "stripe",
+        "scenario": "future-timestamp",
+        "body": "{\"type\":\"invoice.paid\",\"id\":\"evt-104\"}"
+      },
+      "why": "A timestamp too far in the future indicates clock or replay abuse"
+    },
+    {
+      "id": "hook-h05",
+      "title": "Slack missing signature header",
+      "cwe": "CWE-306",
+      "input": {
+        "provider": "slack",
+        "scenario": "missing-signature",
+        "body": "{\"type\":\"event_callback\",\"event_id\":\"evt-105\"}"
+      },
+      "why": "A webhook with no signature has no proof of origin"
+    },
+    {
+      "id": "hook-h06",
+      "title": "Shopify noncanonical base64",
+      "cwe": "CWE-20",
+      "input": {
+        "provider": "shopify",
+        "scenario": "bad-base64",
+        "body": "{\"topic\":\"orders/create\",\"id\":\"evt-106\"}"
+      },
+      "why": "Encoding confusion must not become a signature acceptance oracle"
+    },
+    {
+      "id": "hook-h07",
+      "title": "Linear ambiguous multi-value header",
+      "cwe": "CWE-444",
+      "input": {
+        "provider": "linear",
+        "scenario": "array-header",
+        "body": "{\"type\":\"Issue\",\"action\":\"update\",\"id\":\"evt-107\"}"
+      },
+      "why": "Duplicate single-value signature headers are ambiguous and must fail closed"
+    },
+    {
+      "id": "hook-h08",
+      "title": "Standard Webhooks replayed delivery",
+      "cwe": "CWE-294",
+      "input": {
+        "provider": "standard-webhooks",
+        "scenario": "replayed-delivery",
+        "body": "{\"type\":\"message.sent\",\"id\":\"evt-108\"}"
+      },
+      "why": "A previously verified delivery cannot be accepted a second time when replay protection is enabled"
+    }
+  ],
+  "benign": [
+    {
+      "id": "hook-b01",
+      "title": "Valid GitHub delivery",
+      "input": {
+        "provider": "github",
+        "scenario": "valid",
+        "body": "{\"event\":\"push\",\"delivery\":\"evt-201\"}"
+      },
+      "why": "Correct raw-body HMAC with the current secret"
+    },
+    {
+      "id": "hook-b02",
+      "title": "GitHub previous-secret rotation",
+      "input": {
+        "provider": "github",
+        "scenario": "rotation",
+        "body": "{\"event\":\"push\",\"delivery\":\"evt-202\"}"
+      },
+      "why": "Zero-downtime rotation accepts the previous secret while it remains configured"
+    },
+    {
+      "id": "hook-b03",
+      "title": "Valid Stripe delivery",
+      "input": {
+        "provider": "stripe",
+        "scenario": "valid",
+        "body": "{\"type\":\"invoice.paid\",\"id\":\"evt-203\"}"
+      },
+      "why": "Correct timestamped Stripe signature inside tolerance"
+    },
+    {
+      "id": "hook-b04",
+      "title": "Valid Slack delivery",
+      "input": {
+        "provider": "slack",
+        "scenario": "valid",
+        "body": "{\"type\":\"event_callback\",\"event_id\":\"evt-204\"}"
+      },
+      "why": "Correct Slack versioned signature and timestamp"
+    },
+    {
+      "id": "hook-b05",
+      "title": "Valid Shopify delivery",
+      "input": {
+        "provider": "shopify",
+        "scenario": "valid",
+        "body": "{\"topic\":\"orders/create\",\"id\":\"evt-205\"}"
+      },
+      "why": "Correct canonical base64 Shopify HMAC"
+    },
+    {
+      "id": "hook-b06",
+      "title": "Valid Linear delivery",
+      "input": {
+        "provider": "linear",
+        "scenario": "valid",
+        "body": "{\"type\":\"Issue\",\"action\":\"update\",\"id\":\"evt-206\"}"
+      },
+      "why": "Correct single hex Linear signature"
+    },
+    {
+      "id": "hook-b07",
+      "title": "Valid Standard Webhooks delivery",
+      "input": {
+        "provider": "standard-webhooks",
+        "scenario": "valid",
+        "body": "{\"type\":\"message.sent\",\"id\":\"evt-207\"}"
+      },
+      "why": "Correct message-id, timestamp and base64 signature combination"
+    },
+    {
+      "id": "hook-b08",
+      "title": "Valid Discord interaction",
+      "input": {
+        "provider": "discord",
+        "scenario": "valid",
+        "body": "{\"type\":2,\"id\":\"evt-208\"}"
+      },
+      "why": "Correct Ed25519 interaction signature over timestamp and raw body"
+    }
+  ]
+}

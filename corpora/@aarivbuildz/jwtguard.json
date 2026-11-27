@@ -1,0 +1,170 @@
+{
+  "suite": "@aarivbuildz/jwtguard",
+  "package": "@aarivbuildz/jwtguard",
+  "title": "JWT algorithm confusion, dangerous-header and claim validation",
+  "attackSurface": "Attacker-supplied JWTs verified by an API with an explicit HS256 allowlist",
+  "primaryCwe": "CWE-347",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "JSON Web Token Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/JSON_Web_Token_for_Java_Cheat_Sheet.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-347",
+      "url": "https://cwe.mitre.org/data/definitions/347.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-345",
+      "url": "https://cwe.mitre.org/data/definitions/345.html"
+    },
+    {
+      "type": "CVE",
+      "id": "CVE-2015-9235",
+      "url": "https://nvd.nist.gov/vuln/detail/CVE-2015-9235",
+      "note": "node-jsonwebtoken algorithm-confusion class"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "jwt-h01",
+      "title": "Unsigned alg none token",
+      "cwe": "CWE-347",
+      "input": {
+        "scenario": "alg-none"
+      },
+      "why": "A token that asks the verifier to skip signature validation"
+    },
+    {
+      "id": "jwt-h02",
+      "title": "Algorithm outside the allowlist",
+      "cwe": "CWE-347",
+      "input": {
+        "scenario": "unlisted-algorithm"
+      },
+      "why": "The verifier must use its configured allowlist rather than trust the token header"
+    },
+    {
+      "id": "jwt-h03",
+      "title": "Remote jku key reference",
+      "cwe": "CWE-829",
+      "input": {
+        "scenario": "dangerous-jku"
+      },
+      "why": "A token-controlled key URL would otherwise become remote key injection"
+    },
+    {
+      "id": "jwt-h04",
+      "title": "Key identifier path traversal",
+      "cwe": "CWE-22",
+      "input": {
+        "scenario": "kid-traversal"
+      },
+      "why": "A hostile kid can become file-path or lookup traversal in key resolution"
+    },
+    {
+      "id": "jwt-h05",
+      "title": "Duplicate role claim smuggling",
+      "cwe": "CWE-20",
+      "input": {
+        "scenario": "duplicate-payload-key"
+      },
+      "why": "Duplicate JSON keys can produce parser differentials in authorization claims"
+    },
+    {
+      "id": "jwt-h06",
+      "title": "Prototype pollution claim",
+      "cwe": "CWE-1321",
+      "input": {
+        "scenario": "prototype-payload-key"
+      },
+      "why": "Prototype-shaped payload keys are dangerous when claims are merged into objects"
+    },
+    {
+      "id": "jwt-h07",
+      "title": "Missing required expiry",
+      "cwe": "CWE-613",
+      "input": {
+        "scenario": "missing-exp"
+      },
+      "why": "A token without exp would otherwise live indefinitely"
+    },
+    {
+      "id": "jwt-h08",
+      "title": "Expired token replay",
+      "cwe": "CWE-613",
+      "input": {
+        "scenario": "expired"
+      },
+      "why": "A captured expired token must remain invalid"
+    }
+  ],
+  "benign": [
+    {
+      "id": "jwt-b01",
+      "title": "Basic valid HS256 token",
+      "input": {
+        "scenario": "valid-basic"
+      },
+      "why": "Ordinary signed token with issuer, audience, issued-at and expiry claims"
+    },
+    {
+      "id": "jwt-b02",
+      "title": "Array audience token",
+      "input": {
+        "scenario": "valid-array-audience"
+      },
+      "why": "JWT audiences may be arrays containing the API audience"
+    },
+    {
+      "id": "jwt-b03",
+      "title": "Safe key identifier",
+      "input": {
+        "scenario": "valid-safe-kid"
+      },
+      "why": "A simple stable kid supports key rotation without path semantics"
+    },
+    {
+      "id": "jwt-b04",
+      "title": "Active not-before token",
+      "input": {
+        "scenario": "valid-nbf"
+      },
+      "why": "A token already inside its validity window"
+    },
+    {
+      "id": "jwt-b05",
+      "title": "Expiry at clock tolerance boundary",
+      "input": {
+        "scenario": "valid-expiry-boundary"
+      },
+      "why": "Small clock skew should not reject a token inside tolerance"
+    },
+    {
+      "id": "jwt-b06",
+      "title": "Custom application claims",
+      "input": {
+        "scenario": "valid-custom-claims"
+      },
+      "why": "Applications commonly carry scopes and nested metadata in claims"
+    },
+    {
+      "id": "jwt-b07",
+      "title": "Token identifier claim",
+      "input": {
+        "scenario": "valid-jti"
+      },
+      "why": "A jwt-id claim can support revocation bookkeeping"
+    },
+    {
+      "id": "jwt-b08",
+      "title": "Maximum-age boundary token",
+      "input": {
+        "scenario": "valid-iat-edge"
+      },
+      "why": "A token one second inside the configured maximum age remains valid"
+    }
+  ]
+}

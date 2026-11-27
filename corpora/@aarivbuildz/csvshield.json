@@ -1,0 +1,132 @@
+{
+  "suite": "@aarivbuildz/csvshield",
+  "package": "@aarivbuildz/csvshield",
+  "title": "CSV formula-injection and spreadsheet payload defense",
+  "attackSurface": "CSV exports opened by spreadsheet applications at an administrative workstation",
+  "primaryCwe": "CWE-1236",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "CSV Injection",
+      "url": "https://owasp.org/www-community/attacks/CSV_Injection"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-1236",
+      "url": "https://cwe.mitre.org/data/definitions/1236.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-74",
+      "url": "https://cwe.mitre.org/data/definitions/74.html"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "csv-h01",
+      "title": "Equals formula trigger",
+      "cwe": "CWE-1236",
+      "input": "name,total\nAlpha,=SUM(A1:A9)\n",
+      "why": "A leading equals sign is interpreted as a spreadsheet formula"
+    },
+    {
+      "id": "csv-h02",
+      "title": "Plus formula trigger",
+      "cwe": "CWE-1236",
+      "input": "name,total\nAlpha,+1+2\n",
+      "why": "Spreadsheet applications can treat a leading plus as a formula"
+    },
+    {
+      "id": "csv-h03",
+      "title": "Minus formula trigger",
+      "cwe": "CWE-1236",
+      "input": "name,total\nAlpha,-2+3\n",
+      "why": "A leading minus can begin a formula rather than a negative data value"
+    },
+    {
+      "id": "csv-h04",
+      "title": "At-sign formula trigger",
+      "cwe": "CWE-1236",
+      "input": "name,total\nAlpha,@SUM(1)\n",
+      "why": "Legacy spreadsheet functions can begin with an at sign"
+    },
+    {
+      "id": "csv-h05",
+      "title": "Whitespace-obfuscated trigger",
+      "cwe": "CWE-1236",
+      "input": "name,total\nAlpha,  =2+5\n",
+      "why": "Leading whitespace is often stripped before spreadsheet interpretation"
+    },
+    {
+      "id": "csv-h06",
+      "title": "Zero-width obfuscated trigger",
+      "cwe": "CWE-1236",
+      "input": "name,total\nAlpha,​=2+5\n",
+      "why": "Invisible Unicode characters can hide a trigger from casual review"
+    },
+    {
+      "id": "csv-h07",
+      "title": "DDE command shape",
+      "cwe": "CWE-1236",
+      "input": "name,cmd\nAlpha,\"=cmd|'/c calc'!A0\"\n",
+      "why": "Dynamic data exchange formulas are a classic spreadsheet execution payload"
+    },
+    {
+      "id": "csv-h08",
+      "title": "Tab-prefixed formula trigger",
+      "cwe": "CWE-1236",
+      "input": "name,total\nAlpha,\t=1+1\n",
+      "why": "A leading tab is both a formula trigger and a visual obfuscation primitive"
+    }
+  ],
+  "benign": [
+    {
+      "id": "csv-b01",
+      "title": "Positive integer data",
+      "input": "name,total\nAlpha,42\n",
+      "why": "Ordinary numeric export data"
+    },
+    {
+      "id": "csv-b02",
+      "title": "Plain text data",
+      "input": "name,total\nAlpha,ordinary text\n",
+      "why": "Text without formula triggers"
+    },
+    {
+      "id": "csv-b03",
+      "title": "Quoted comma data",
+      "input": "name,total\nAlpha,\"comma, inside\"\n",
+      "why": "RFC 4180 quoting preserves legitimate commas"
+    },
+    {
+      "id": "csv-b04",
+      "title": "Quoted multiline data",
+      "input": "name,total\nAlpha,\"line one\nline two\"\n",
+      "why": "Quoted newlines are legitimate CSV content when not used as a trigger"
+    },
+    {
+      "id": "csv-b05",
+      "title": "Unicode text data",
+      "input": "name,total\nAlpha,unicode café 東京\n",
+      "why": "International text is valid spreadsheet content"
+    },
+    {
+      "id": "csv-b06",
+      "title": "Parenthesized accounting value",
+      "input": "name,total\nAlpha,(100)\n",
+      "why": "Accounting notation does not begin with a formula trigger"
+    },
+    {
+      "id": "csv-b07",
+      "title": "Positive decimal data",
+      "input": "name,total\nAlpha,0.25\n",
+      "why": "Positive decimal data is not a formula"
+    },
+    {
+      "id": "csv-b08",
+      "title": "Hyphen inside identifier",
+      "input": "name,total\nAlpha,item-42\n",
+      "why": "A hyphen inside a cell is not a leading trigger"
+    }
+  ]
+}

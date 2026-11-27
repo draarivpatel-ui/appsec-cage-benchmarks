@@ -6,10 +6,10 @@ import { PACKAGE_ORDER, corpusCases, loadCorpora, materializeInput, validateCorp
 
 const rootDir = fileURLToPath(new URL('../', import.meta.url));
 
-test('corpus set covers exactly the ten pinned packages', async () => {
+test('corpus set covers exactly the eighteen pinned packages', async () => {
   const corpora = await loadCorpora(rootDir);
   assert.deepEqual(corpora.map((corpus) => corpus.package), PACKAGE_ORDER);
-  assert.equal(new Set(corpora.map((corpus) => corpus.package)).size, 10);
+  assert.equal(new Set(corpora.map((corpus) => corpus.package)).size, 18);
 });
 
 test('every corpus has eight hostile and eight benign curated cases', async () => {

@@ -14,18 +14,26 @@ Reproduce with `npm ci && npm run bench`. CI uses `npm ci && npm test && npm run
 
 | Package | Version | Hostile blocked | Benign false positives | p50 us | p95 us | p99 us | ops/sec |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: |
-| `sentinel-lint` | 0.2.0 | 8/8 (100.00%) | 0/8 (0.00%) | 453.50 | 1653.63 | 4887.58 | 1425.34 |
-| `pathcage` | 1.0.1 | 8/8 (100.00%) | 0/8 (0.00%) | 8.38 | 26.42 | 50.63 | 42907.48 |
-| `headersafe` | 1.0.1 | 8/8 (100.00%) | 0/8 (0.00%) | 3.88 | 7.33 | 15.00 | 261805.81 |
-| `redirectcage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 4.00 | 12.46 | 32.92 | 176326.66 |
-| `envcage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 19.21 | 44.58 | 75.50 | 49246.63 |
-| `cookiecage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 5.50 | 22.79 | 75.00 | 116997.84 |
-| `zipcage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 31.08 | 181.83 | 231.71 | 21299.25 |
-| `logcage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 3.83 | 9.50 | 33.88 | 150759.46 |
-| `corscage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 5.54 | 26.58 | 72.50 | 101363.77 |
-| `jsoncage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 7.63 | 36.29 | 77.71 | 74606.68 |
+| `sentinel-lint` | 0.2.0 | 8/8 (100.00%) | 0/8 (0.00%) | 400.00 | 887.83 | 1946.88 | 2050.83 |
+| `pathcage` | 1.0.1 | 8/8 (100.00%) | 0/8 (0.00%) | 8.50 | 35.54 | 180.96 | 52046.06 |
+| `headersafe` | 1.0.1 | 8/8 (100.00%) | 0/8 (0.00%) | 3.79 | 5.54 | 35.13 | 216669.09 |
+| `redirectcage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 5.63 | 27.79 | 115.46 | 68385.81 |
+| `envcage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 19.04 | 57.79 | 104.58 | 41873.56 |
+| `cookiecage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 8.00 | 55.96 | 129.71 | 51652.89 |
+| `zipcage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 50.33 | 287.38 | 640.13 | 10809.72 |
+| `logcage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 5.25 | 15.42 | 50.96 | 102588.22 |
+| `corscage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 14.88 | 43.21 | 112.96 | 47570.44 |
+| `jsoncage` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 17.75 | 77.75 | 140.04 | 32300.48 |
+| `@aarivbuildz/jwtguard` | 1.0.1 | 8/8 (100.00%) | 0/8 (0.00%) | 50.96 | 147.29 | 336.92 | 14324.64 |
+| `@aarivbuildz/csrfshield` | 1.0.1 | 8/8 (100.00%) | 0/8 (0.00%) | 43.04 | 142.58 | 646.17 | 14511.55 |
+| `@aarivbuildz/hookverify` | 1.0.1 | 8/8 (100.00%) | 0/8 (0.00%) | 45.46 | 304.29 | 630.83 | 11031.56 |
+| `@aarivbuildz/urlguard` | 0.1.0 | 8/8 (100.00%) | 0/8 (0.00%) | 9.50 | 47.58 | 141.38 | 44792.92 |
+| `@aarivbuildz/regex-shield` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 16.71 | 107.63 | 437.67 | 25986.77 |
+| `@aarivbuildz/csvshield` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 5.29 | 25.92 | 100.21 | 52668.31 |
+| `@aarivbuildz/htmlclean` | 0.1.0 | 8/8 (100.00%) | 0/8 (0.00%) | 4.00 | 14.54 | 47.25 | 76687.85 |
+| `@aarivbuildz/secretsweep` | 1.0.0 | 8/8 (100.00%) | 0/8 (0.00%) | 33.04 | 292.71 | 2022.75 | 5728.02 |
 
-Aggregate hostile block rate: 100.00% (80/80). Aggregate benign false-positive rate: 0.00% (0/80).
+Aggregate hostile block rate: 100.00% (144/144). Aggregate benign false-positive rate: 0.00% (0/144).
 
 ## Per-suite case results
 
@@ -258,3 +266,187 @@ Prototype pollution, duplicate-key smuggling and JSON denial-of-service defense.
 | `json-b06` | benign | false | `accepted` |
 | `json-b07` | benign | false | `accepted` |
 | `json-b08` | benign | false | `accepted` |
+
+### @aarivbuildz/jwtguard
+
+JWT algorithm confusion, dangerous-header and claim validation. Primary weakness: CWE-347.
+
+| Case | Kind | Blocked | Signal |
+| --- | --- | --- | --- |
+| `jwt-h01` | hostile | true | `ERR_JWTGUARD_MALFORMED_TOKEN` |
+| `jwt-h02` | hostile | true | `ERR_JWTGUARD_INVALID_ALGORITHM` |
+| `jwt-h03` | hostile | true | `ERR_JWTGUARD_DANGEROUS_HEADER` |
+| `jwt-h04` | hostile | true | `ERR_JWTGUARD_INVALID_KID` |
+| `jwt-h05` | hostile | true | `ERR_JWTGUARD_DUPLICATE_JSON_KEY` |
+| `jwt-h06` | hostile | true | `ERR_JWTGUARD_UNSAFE_KEY` |
+| `jwt-h07` | hostile | true | `ERR_JWTGUARD_MISSING_CLAIM` |
+| `jwt-h08` | hostile | true | `ERR_JWTGUARD_EXPIRED` |
+| `jwt-b01` | benign | false | `accepted` |
+| `jwt-b02` | benign | false | `accepted` |
+| `jwt-b03` | benign | false | `accepted` |
+| `jwt-b04` | benign | false | `accepted` |
+| `jwt-b05` | benign | false | `accepted` |
+| `jwt-b06` | benign | false | `accepted` |
+| `jwt-b07` | benign | false | `accepted` |
+| `jwt-b08` | benign | false | `accepted` |
+
+### @aarivbuildz/csrfshield
+
+Cross-site request forgery token, origin and fetch-metadata enforcement. Primary weakness: CWE-352.
+
+| Case | Kind | Blocked | Signal |
+| --- | --- | --- | --- |
+| `csrf-h01` | hostile | true | `CROSS_SITE_REQUEST` |
+| `csrf-h02` | hostile | true | `ORIGIN_MISMATCH` |
+| `csrf-h03` | hostile | true | `ORIGIN_MISMATCH` |
+| `csrf-h04` | hostile | true | `MISSING_COOKIE` |
+| `csrf-h05` | hostile | true | `INVALID_TOKEN` |
+| `csrf-h06` | hostile | true | `INVALID_TOKEN` |
+| `csrf-h07` | hostile | true | `EXPIRED_TOKEN` |
+| `csrf-h08` | hostile | true | `SESSION_MISMATCH` |
+| `csrf-b01` | benign | false | `accepted` |
+| `csrf-b02` | benign | false | `accepted` |
+| `csrf-b03` | benign | false | `accepted` |
+| `csrf-b04` | benign | false | `accepted` |
+| `csrf-b05` | benign | false | `accepted` |
+| `csrf-b06` | benign | false | `accepted` |
+| `csrf-b07` | benign | false | `accepted` |
+| `csrf-b08` | benign | false | `accepted` |
+
+### @aarivbuildz/hookverify
+
+Webhook signature forgery, replay and encoding validation. Primary weakness: CWE-347.
+
+| Case | Kind | Blocked | Signal |
+| --- | --- | --- | --- |
+| `hook-h01` | hostile | true | `SIGNATURE_MISMATCH` |
+| `hook-h02` | hostile | true | `INVALID_SIGNATURE` |
+| `hook-h03` | hostile | true | `TIMESTAMP_OUT_OF_TOLERANCE` |
+| `hook-h04` | hostile | true | `TIMESTAMP_OUT_OF_TOLERANCE` |
+| `hook-h05` | hostile | true | `MISSING_HEADER` |
+| `hook-h06` | hostile | true | `INVALID_SIGNATURE` |
+| `hook-h07` | hostile | true | `INVALID_HEADER` |
+| `hook-h08` | hostile | true | `REPLAYED_DELIVERY` |
+| `hook-b01` | benign | false | `valid` |
+| `hook-b02` | benign | false | `valid` |
+| `hook-b03` | benign | false | `valid` |
+| `hook-b04` | benign | false | `valid` |
+| `hook-b05` | benign | false | `valid` |
+| `hook-b06` | benign | false | `valid` |
+| `hook-b07` | benign | false | `valid` |
+| `hook-b08` | benign | false | `valid` |
+
+### @aarivbuildz/urlguard
+
+SSRF private-address, metadata and redirect-chain defense. Primary weakness: CWE-918.
+
+| Case | Kind | Blocked | Signal |
+| --- | --- | --- | --- |
+| `url-h01` | hostile | true | `PRIVATE_IP` |
+| `url-h02` | hostile | true | `PRIVATE_IP` |
+| `url-h03` | hostile | true | `HOST_DENIED` |
+| `url-h04` | hostile | true | `USERINFO_FORBIDDEN` |
+| `url-h05` | hostile | true | `UNSAFE_SCHEME` |
+| `url-h06` | hostile | true | `PRIVATE_IP` |
+| `url-h07` | hostile | true | `UNSAFE_SCHEME` |
+| `url-h08` | hostile | true | `REDIRECT_LOOP` |
+| `url-b01` | benign | false | `accepted` |
+| `url-b02` | benign | false | `accepted` |
+| `url-b03` | benign | false | `accepted` |
+| `url-b04` | benign | false | `accepted` |
+| `url-b05` | benign | false | `accepted` |
+| `url-b06` | benign | false | `accepted` |
+| `url-b07` | benign | false | `accepted` |
+| `url-b08` | benign | false | `accepted` |
+
+### @aarivbuildz/regex-shield
+
+ReDoS ambiguity and catastrophic-backtracking detection. Primary weakness: CWE-1333.
+
+| Case | Kind | Blocked | Signal |
+| --- | --- | --- | --- |
+| `regex-h01` | hostile | true | `RS001` |
+| `regex-h02` | hostile | true | `RS003` |
+| `regex-h03` | hostile | true | `RS001` |
+| `regex-h04` | hostile | true | `RS001` |
+| `regex-h05` | hostile | true | `RS002` |
+| `regex-h06` | hostile | true | `RS007` |
+| `regex-h07` | hostile | true | `RS004` |
+| `regex-h08` | hostile | true | `RS006` |
+| `regex-b01` | benign | false | `accepted` |
+| `regex-b02` | benign | false | `accepted` |
+| `regex-b03` | benign | false | `accepted` |
+| `regex-b04` | benign | false | `accepted` |
+| `regex-b05` | benign | false | `accepted` |
+| `regex-b06` | benign | false | `accepted` |
+| `regex-b07` | benign | false | `accepted` |
+| `regex-b08` | benign | false | `accepted` |
+
+### @aarivbuildz/csvshield
+
+CSV formula-injection and spreadsheet payload defense. Primary weakness: CWE-1236.
+
+| Case | Kind | Blocked | Signal |
+| --- | --- | --- | --- |
+| `csv-h01` | hostile | true | `leading-trigger` |
+| `csv-h02` | hostile | true | `leading-trigger` |
+| `csv-h03` | hostile | true | `leading-trigger` |
+| `csv-h04` | hostile | true | `leading-trigger` |
+| `csv-h05` | hostile | true | `obfuscated-trigger` |
+| `csv-h06` | hostile | true | `obfuscated-trigger` |
+| `csv-h07` | hostile | true | `leading-trigger` |
+| `csv-h08` | hostile | true | `leading-trigger` |
+| `csv-b01` | benign | false | `accepted` |
+| `csv-b02` | benign | false | `accepted` |
+| `csv-b03` | benign | false | `accepted` |
+| `csv-b04` | benign | false | `accepted` |
+| `csv-b05` | benign | false | `accepted` |
+| `csv-b06` | benign | false | `accepted` |
+| `csv-b07` | benign | false | `accepted` |
+| `csv-b08` | benign | false | `accepted` |
+
+### @aarivbuildz/htmlclean
+
+HTML script, event, URL and foreign-content injection neutralization. Primary weakness: CWE-79.
+
+| Case | Kind | Blocked | Signal |
+| --- | --- | --- | --- |
+| `html-h01` | hostile | true | `neutralized` |
+| `html-h02` | hostile | true | `neutralized` |
+| `html-h03` | hostile | true | `neutralized` |
+| `html-h04` | hostile | true | `neutralized` |
+| `html-h05` | hostile | true | `neutralized` |
+| `html-h06` | hostile | true | `neutralized` |
+| `html-h07` | hostile | true | `neutralized` |
+| `html-h08` | hostile | true | `neutralized` |
+| `html-b01` | benign | false | `unchanged` |
+| `html-b02` | benign | false | `unchanged` |
+| `html-b03` | benign | false | `unchanged` |
+| `html-b04` | benign | false | `unchanged` |
+| `html-b05` | benign | false | `unchanged` |
+| `html-b06` | benign | false | `unchanged` |
+| `html-b07` | benign | false | `unchanged` |
+| `html-b08` | benign | false | `unchanged` |
+
+### @aarivbuildz/secretsweep
+
+Hard-coded secret and high-entropy credential detection. Primary weakness: CWE-798.
+
+| Case | Kind | Blocked | Signal |
+| --- | --- | --- | --- |
+| `sweep-h01` | hostile | true | `generic-secret-assignment` |
+| `sweep-h02` | hostile | true | `generic-secret-assignment` |
+| `sweep-h03` | hostile | true | `generic-secret-assignment` |
+| `sweep-h04` | hostile | true | `generic-secret-assignment` |
+| `sweep-h05` | hostile | true | `db-uri-password` |
+| `sweep-h06` | hostile | true | `jwt-in-config` |
+| `sweep-h07` | hostile | true | `pem-private-key` |
+| `sweep-h08` | hostile | true | `high-entropy-generic` |
+| `sweep-b01` | benign | false | `no-findings` |
+| `sweep-b02` | benign | false | `no-findings` |
+| `sweep-b03` | benign | false | `no-findings` |
+| `sweep-b04` | benign | false | `no-findings` |
+| `sweep-b05` | benign | false | `no-findings` |
+| `sweep-b06` | benign | false | `no-findings` |
+| `sweep-b07` | benign | false | `no-findings` |
+| `sweep-b08` | benign | false | `no-findings` |

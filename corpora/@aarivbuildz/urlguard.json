@@ -1,0 +1,192 @@
+{
+  "suite": "@aarivbuildz/urlguard",
+  "package": "@aarivbuildz/urlguard",
+  "title": "SSRF private-address, metadata and redirect-chain defense",
+  "attackSurface": "Server-side outbound URLs and redirect hops validated before fetch",
+  "primaryCwe": "CWE-918",
+  "references": [
+    {
+      "type": "OWASP",
+      "id": "Server Side Request Forgery Prevention Cheat Sheet",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Server_Side_Request_Forgery_Prevention_Cheat_Sheet.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-918",
+      "url": "https://cwe.mitre.org/data/definitions/918.html"
+    },
+    {
+      "type": "CWE",
+      "id": "CWE-601",
+      "url": "https://cwe.mitre.org/data/definitions/601.html"
+    }
+  ],
+  "hostile": [
+    {
+      "id": "url-h01",
+      "title": "Decimal loopback IPv4",
+      "cwe": "CWE-918",
+      "input": {
+        "kind": "url",
+        "value": "https://2130706433/"
+      },
+      "why": "Single-integer IPv4 notation hides loopback from naive hostname checks"
+    },
+    {
+      "id": "url-h02",
+      "title": "Cloud metadata endpoint",
+      "cwe": "CWE-918",
+      "input": {
+        "kind": "url",
+        "value": "https://169.254.169.254/latest/meta-data/"
+      },
+      "why": "Cloud instance metadata is a canonical SSRF target"
+    },
+    {
+      "id": "url-h03",
+      "title": "Metadata hostname denylist",
+      "cwe": "CWE-918",
+      "input": {
+        "kind": "url",
+        "value": "https://metadata.google.internal/"
+      },
+      "why": "Well-known cloud metadata hostnames are dangerous even without literal IP input"
+    },
+    {
+      "id": "url-h04",
+      "title": "Embedded URL credentials",
+      "cwe": "CWE-918",
+      "input": {
+        "kind": "url",
+        "value": "https://user@example.com/"
+      },
+      "why": "Userinfo can confuse allowlist checks and leak credentials across hops"
+    },
+    {
+      "id": "url-h05",
+      "title": "File scheme escape",
+      "cwe": "CWE-918",
+      "input": {
+        "kind": "url",
+        "value": "file:///etc/passwd"
+      },
+      "why": "Outbound fetch policies must not become local-file readers"
+    },
+    {
+      "id": "url-h06",
+      "title": "IPv4-mapped IPv6 loopback",
+      "cwe": "CWE-918",
+      "input": {
+        "kind": "url",
+        "value": "https://[::ffff:7f00:1]/"
+      },
+      "why": "Mapped IPv6 notation embeds the same loopback target in another syntax"
+    },
+    {
+      "id": "url-h07",
+      "title": "Redirect scheme downgrade",
+      "cwe": "CWE-601",
+      "input": {
+        "kind": "chain",
+        "values": [
+          "https://example.com/start",
+          "http://example.com/final"
+        ]
+      },
+      "why": "Every redirect hop must revalidate scheme rather than trusting the first URL"
+    },
+    {
+      "id": "url-h08",
+      "title": "Redirect loop",
+      "cwe": "CWE-601",
+      "input": {
+        "kind": "chain",
+        "values": [
+          "https://example.com/start",
+          "https://example.com/start"
+        ]
+      },
+      "why": "Redirect loops waste network and worker resources"
+    }
+  ],
+  "benign": [
+    {
+      "id": "url-b01",
+      "title": "Plain HTTPS hostname",
+      "input": {
+        "kind": "url",
+        "value": "https://example.com/"
+      },
+      "why": "Ordinary HTTPS URL on a public hostname"
+    },
+    {
+      "id": "url-b02",
+      "title": "Explicit default port and query",
+      "input": {
+        "kind": "url",
+        "value": "https://sub.example.com:443/a?q=1"
+      },
+      "why": "The explicit HTTPS default port is equivalent to the normal origin"
+    },
+    {
+      "id": "url-b03",
+      "title": "Uppercase hostname normalization",
+      "input": {
+        "kind": "url",
+        "value": "https://EXAMPLE.com/path"
+      },
+      "why": "DNS hostnames are case-insensitive and normalize safely"
+    },
+    {
+      "id": "url-b04",
+      "title": "Encoded Unicode path",
+      "input": {
+        "kind": "url",
+        "value": "https://example.com/%E2%98%83"
+      },
+      "why": "Percent-encoded paths are valid when the host remains public"
+    },
+    {
+      "id": "url-b05",
+      "title": "Fragmented documentation link",
+      "input": {
+        "kind": "url",
+        "value": "https://example.com/docs#section"
+      },
+      "why": "Fragments are normal URL syntax and never leave the client in ordinary fetch use"
+    },
+    {
+      "id": "url-b06",
+      "title": "Same-host redirect chain",
+      "input": {
+        "kind": "chain",
+        "values": [
+          "https://example.com/start",
+          "https://example.com/final"
+        ]
+      },
+      "why": "A bounded same-host redirect is routine"
+    },
+    {
+      "id": "url-b07",
+      "title": "Cross-origin subdomain redirect",
+      "input": {
+        "kind": "chain",
+        "values": [
+          "https://example.com/start",
+          "https://sub.example.com/final"
+        ]
+      },
+      "why": "Cross-origin hops are allowed when both remain HTTPS public hosts"
+    },
+    {
+      "id": "url-b08",
+      "title": "Deep path and encoded query",
+      "input": {
+        "kind": "url",
+        "value": "https://example.com/a/b/c?q=%7B%7D"
+      },
+      "why": "Real application URLs often contain deep paths and encoded query data"
+    }
+  ]
+}

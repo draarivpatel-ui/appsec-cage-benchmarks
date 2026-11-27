@@ -15,9 +15,9 @@ test('all hostile corpus cases are blocked with zero benign false positives', { 
     warmup: 0
   });
 
-  assert.equal(report.summary.hostileTotal, 80);
-  assert.equal(report.summary.benignTotal, 80);
-  assert.equal(report.summary.hostileBlocked, 80);
+  assert.equal(report.summary.hostileTotal, 144);
+  assert.equal(report.summary.benignTotal, 144);
+  assert.equal(report.summary.hostileBlocked, 144);
   assert.equal(report.summary.hostileErrors, 0);
   assert.equal(report.summary.benignFalsePositives, 0);
   assert.equal(report.summary.benignErrors, 0);
