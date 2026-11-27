@@ -10,7 +10,8 @@
   },
   "scripts": {
     "bench": "node src/run-benchmarks.mjs",
-    "test": "node --test test/corpora.test.mjs test/detection.test.mjs test/hygiene.test.mjs test/report.test.mjs"
+    "test": "node --test test/corpora.test.mjs test/detection.test.mjs test/hygiene.test.mjs test/report.test.mjs",
+    "test:fuzz": "node --test test/fuzz.test.js"
   },
   "keywords": [
     "security",
@@ -41,5 +42,8 @@
     "redirectcage": "1.0.0",
     "sentinel-lint": "0.2.0",
     "zipcage": "1.0.0"
+  },
+  "devDependencies": {
+    "fast-check": "4.10.3"
   }
 }

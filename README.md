@@ -150,7 +150,7 @@ RESULTS.md                generated human-readable report
 
 ## CI matrix
 
-GitHub Actions runs Ubuntu and Windows on Node.js 18, 20, 22 and 24, for 8 total jobs. Every job runs exact dependency installation, the full test suite and the quick benchmark.
+GitHub Actions runs Ubuntu and Windows on Node.js 18, 20, 22 and 24, for 8 matrix jobs, plus a separate fast-check fuzz job. Every matrix job runs exact dependency installation, the full test suite and the quick benchmark.
 
 ## Contributing
 

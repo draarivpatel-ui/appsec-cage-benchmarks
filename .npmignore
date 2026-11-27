@@ -1,0 +1,7 @@
+test/
+.github/
+coverage/
+*.log
+*.tgz
+.DS_Store
+.bench-tmp/
