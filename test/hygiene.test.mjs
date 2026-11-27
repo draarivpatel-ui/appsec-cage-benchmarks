@@ -89,7 +89,7 @@ test('dependency manifest pins exactly the ten benchmarked packages', async () =
     assert.match(version, /^\d+\.\d+\.\d+$/, name + ' must be exactly pinned');
   }
   assert.equal(packageJson.scripts.bench, 'node src/run-benchmarks.mjs');
-  assert.equal(packageJson.scripts.test, 'node --test test/');
+  assert.equal(packageJson.scripts.test, 'node --test test/corpora.test.mjs test/detection.test.mjs test/hygiene.test.mjs test/report.test.mjs');
   assert.equal(packageJson.private, true);
 });
 

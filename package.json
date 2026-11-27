@@ -10,7 +10,7 @@
   },
   "scripts": {
     "bench": "node src/run-benchmarks.mjs",
-    "test": "node --test test/"
+    "test": "node --test test/corpora.test.mjs test/detection.test.mjs test/hygiene.test.mjs test/report.test.mjs"
   },
   "keywords": [
     "security",
