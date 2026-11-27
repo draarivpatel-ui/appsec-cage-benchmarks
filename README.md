@@ -1,5 +1,6 @@
 # appsec-cage-benchmarks
 
+[![OpenSSF Scorecard](https://api.securityscorecards.dev/projects/github.com/draarivpatel-ui/appsec-cage-benchmarks/badge)](https://securityscorecards.dev/viewer/?uri=github.com/draarivpatel-ui/appsec-cage-benchmarks)
 [![CI](https://github.com/draarivpatel-ui/appsec-cage-benchmarks/actions/workflows/ci.yml/badge.svg)](https://github.com/draarivpatel-ui/appsec-cage-benchmarks/actions/workflows/ci.yml)
 
 An open, reproducible OWASP and CVE security firewall benchmark suite for eighteen published zero-dependency npm packages:
